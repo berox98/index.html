@@ -1,0 +1,91 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sweetheart Candy Generator</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #ffe6e6;
+  }
+  .candy {
+    width: 200px;
+    height: 120px;
+    background-color: #ff9999;
+    border-radius: 100px / 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #ff3366;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    animation: float 3s ease-in-out infinite;
+    text-align: center;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .candy:hover {
+    transform: scale(1.1);
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+</style>
+</head>
+<body>
+<div id="candy" class="candy">Click me!</div>
+
+<script>
+const candy = document.getElementById('candy');
+const messages = [
+  "Be mine",
+  "Love you",
+  "Kiss me",
+  "Hug me",
+  "True love",
+  "Forever",
+  "Soulmate",
+  "My heart",
+  "Sweetheart",
+  "Adore you",
+  "Love wins",
+  "You & me",
+  "Endless love",
+  "Dream team",
+  "Love bug",
+  "Xoxo",
+  "Cute stuff",
+  "Love bird",
+  "Heart eyes",
+  "My sunshine"
+];
+
+function getRandomMessage() {
+  return messages[Math.floor(Math.random() * messages.length)];
+}
+
+function getRandomColor() {
+  const pastelColors = [
+    '#FFB3BA', '#FFDFBA', '#FFFFBA', '#BAFFC9', '#BAE1FF',
+    '#FFC3A0', '#D0A3FF', '#FFA3B5', '#A3FFD9', '#A3D9FF'
+  ];
+  return pastelColors[Math.floor(Math.random() * pastelColors.length)];
+}
+
+candy.addEventListener('click', () => {
+  candy.style.backgroundColor = getRandomColor();
+  candy.textContent = getRandomMessage();
+  candy.style.transform = 'scale(1.2)';
+  setTimeout(() => {
+    candy.style.transform = 'scale(1)';
+  }, 200);
+});
+</script>
+</body></html>
