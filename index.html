@@ -1,0 +1,228 @@
+    <title>Need More Love - Valentine's Day Game</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #FFB6C1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #333;
+            text-align: center;
+        }
+        #game-container {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+        #girlfriend {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            background-color: pink;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.5s;
+        }
+        .love-meter {
+            width: 100%;
+            height: 30px;
+            background-color: #FFD1DC;
+            border-radius: 15px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        .love-meter-fill {
+            width: 0%;
+            height: 100%;
+            background-color: #FF69B4;
+            transition: width 0.5s ease;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: space-around;
+        }
+        button {
+            background-color: #FF1493;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #FF69B4;
+        }
+        #obstacles {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #FF4500;
+        }
+        #restart-btn {
+            display: none;
+            margin: 20px auto;
+            background-color: #4CAF50;
+        }
+        #restart-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <h1>Need More Love 💘</h1>
+        <div id="girlfriend">
+            Girlfriend
+        </div>
+        <div class="love-meter">
+            <div class="love-meter-fill"></div>
+        </div>
+        <div id="mood-display">Her Mood: Neutral</div>
+        <div id="obstacles">Obstacles to Win Her Heart: 3 Challenges Remain!</div>
+        <div class="action-buttons">
+            <button onclick="performAction('flowers')">Give Flowers</button>
+            <button onclick="performAction('chocolate')">Buy Chocolate</button>
+            <button onclick="performAction('compliment')">Give Compliment</button>
+        </div>
+        <div class="action-buttons">
+            <button onclick="performAction('date')">Plan Date</button>
+            <button onclick="performAction('gift')">Surprise Gift</button>
+            <button onclick="performAction('romantic')">Romantic Gesture</button>
+        </div>
+        <p id="result"></p>
+        <button id="restart-btn" onclick="restartGame()">Start Over</button>
+    </div>
+
+    <script>
+        let loveLevel = 0;
+        const maxLoveLevel = 100;
+        let challengesRemaining = 3;
+        const girlfriend = document.getElementById('girlfriend');
+        const loveMeterFill = document.querySelector('.love-meter-fill');
+        const moodDisplay = document.getElementById('mood-display');
+        const resultDisplay = document.getElementById('result');
+        const obstaclesDisplay = document.getElementById('obstacles');
+        const restartBtn = document.getElementById('restart-btn');
+
+        function performAction(action) {
+            let loveIncrease = 0;
+            let moodMessage = '';
+            let randomFactor = Math.random();
+
+            // Make it harder to win her heart
+            if (randomFactor < 0.3) {
+                moodMessage = "Hmm... Not impressed.";
+                loveIncrease = -10;
+                girlfriend.style.transform = 'scale(0.9)';
+                setTimeout(() => girlfriend.style.transform = 'scale(1)', 500);
+            } else {
+                switch(action) {
+                    case 'flowers':
+                        loveIncrease = Math.floor(Math.random() * 15) + 5;
+                        moodMessage = "Aww, these flowers are beautiful!";
+                        break;
+                    case 'chocolate':
+                        loveIncrease = Math.floor(Math.random() * 10) + 5;
+                        moodMessage = "Chocolate? You know me so well!";
+                        break;
+                    case 'compliment':
+                        loveIncrease = Math.floor(Math.random() * 10) + 10;
+                        moodMessage = "That's so sweet of you to say!";
+                        break;
+                    case 'date':
+                        loveIncrease = Math.floor(Math.random() * 20) + 10;
+                        moodMessage = "A thoughtful date? I'm impressed!";
+                        break;
+                    case 'gift':
+                        loveIncrease = Math.floor(Math.random() * 15) + 5;
+                        moodMessage = "Wow, you remembered!";
+                        break;
+                    case 'romantic':
+                        loveIncrease = Math.floor(Math.random() * 25) + 10;
+                        moodMessage = "That was incredibly romantic!";
+                        break;
+                }
+            }
+
+            loveLevel = Math.max(0, Math.min(loveLevel + loveIncrease, maxLoveLevel));
+            challengesRemaining = Math.max(0, challengesRemaining - 1);
+            
+            updateLoveMeter();
+            updateMoodDisplay(moodMessage);
+            updateChallenges();
+            checkGameStatus();
+        }
+
+        function updateLoveMeter() {
+            loveMeterFill.style.width = `${loveLevel}%`;
+        }
+
+        function updateMoodDisplay(message) {
+            moodDisplay.textContent = `Her Mood: ${message}`;
+        }
+
+        function updateChallenges() {
+            obstaclesDisplay.textContent = `Obstacles to Win Her Heart: ${challengesRemaining} Challenges Remain!`;
+        }
+
+        function checkGameStatus() {
+            if (loveLevel >= 80) {
+                resultDisplay.textContent = "Congratulations! You've won her heart! 💕";
+                girlfriend.style.backgroundColor = 'red';
+                disableGameButtons();
+            } else if (challengesRemaining === 0 && loveLevel < 50) {
+                resultDisplay.textContent = "Game Over! You didn't win her heart. Try again!";
+                girlfriend.style.backgroundColor = 'gray';
+                disableGameButtons();
+            } else if (loveLevel >= 50) {
+                resultDisplay.textContent = "She's starting to warm up to you!";
+                girlfriend.style.backgroundColor = 'pink';
+            }
+        }
+
+        function disableGameButtons() {
+            const buttons = document.querySelectorAll('.action-buttons button');
+            buttons.forEach(button => {
+                button.disabled = true;
+                button.style.opacity = '0.5';
+                button.style.cursor = 'not-allowed';
+            });
+            restartBtn.style.display = 'block';
+        }
+
+        function restartGame() {
+            // Reset all game variables
+            loveLevel = 0;
+            challengesRemaining = 3;
+
+            // Reset visual elements
+            loveMeterFill.style.width = '0%';
+            girlfriend.style.backgroundColor = 'pink';
+            moodDisplay.textContent = 'Her Mood: Neutral';
+            obstaclesDisplay.textContent = 'Obstacles to Win Her Heart: 3 Challenges Remain!';
+            resultDisplay.textContent = '';
+
+            // Re-enable buttons
+            const buttons = document.querySelectorAll('.action-buttons button');
+            buttons.forEach(button => {
+                button.disabled = false;
+                button.style.opacity = '1';
+                button.style.cursor = 'pointer';
+            });
+
+            // Hide restart button
+            restartBtn.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
