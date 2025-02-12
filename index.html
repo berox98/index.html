@@ -1,0 +1,382 @@
+<title>$ROBOTIE The Game</title>
+<link rel="icon" href="ROBOTIE.png">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/PointerLockControls.js"></script>
+<style>
+    body {
+        margin: 0;
+    }
+
+    canvas {
+        display: block;
+    }
+
+    #startScreen {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: white;
+        font-family: Arial, sans-serif;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    #startButton {
+        padding: 10px 20px;
+        font-size: 18px;
+        cursor: pointer;
+    }
+
+    #score {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        color: white;
+        font-family: Arial, sans-serif;
+        font-size: 24px;
+    }
+
+    #winScreen {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: white;
+        font-family: Arial, sans-serif;
+        background: rgba(0, 0, 0, 0.9);
+        padding: 20px;
+        border-radius: 10px;
+        display: none;
+    }
+</style>
+</head>
+
+<body>
+    <div id="startScreen">
+        <h1>Chase ROBOTIE!</h1>
+        <p>Use WASD to move, Mouse to look around</p>
+        <p>Click to throw rocks at ROBOTIE!</p>
+        <button id="startButton">Start Game</button>
+    </div>
+    <div id="score">Rocks Hit: <span id="hits">0</span></div>
+    <audio id="familyGuyTheme" src="https://upload.wikimedia.org/wikipedia/en/5/5c/Family_Guy_theme_song.ogg"></audio>
+    <audio id="loonboon" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Loonboon.ogg" loop></audio>
+    <audio id="stewiePain" src="https://upload.wikimedia.org/wikipedia/commons/2/29/TF2_Spy_Pain.ogg"></audio>
+    <script>
+        let camera, scene, renderer, controls;
+        let stewie, map;
+        let rocks = [];
+        let hits = 0;
+        let stewieDirection = new THREE.Vector3(1, 0, 0);
+        let stewieSpeed = 0.1;
+        let walls = [];
+        let moveForward = false;
+        let moveBackward = false;
+        let moveLeft = false;
+        let moveRight = false;
+        let velocity = new THREE.Vector3();
+        const MOVEMENT_SPEED = 0.10;
+        const MAP_BOUNDS = {
+            minX: -30,
+            maxX: 30,
+            minZ: -30,
+            maxZ: 30
+        };
+        const PREFERRED_BOUNDS = {
+            minX: -15,
+            maxX: 15,
+            minZ: -15,
+            maxZ: 15
+        };
+        let familyGuyTheme, loonboon, stewiePain;
+        let gameWon = false;
+
+        function init() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+            renderer = new THREE.WebGLRenderer();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement);
+
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            scene.add(ambientLight);
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+            scene.add(directionalLight);
+
+            const loader = new THREE.GLTFLoader();
+            loader.load('fnaf_1_map.glb', (gltf) => {
+                map = gltf.scene;
+                scene.add(map);
+
+                map.traverse((child) => {
+                    if (child.isMesh && child.name.includes('wall')) {
+                        const bbox = new THREE.Box3().setFromObject(child);
+                        walls.push(bbox);
+                    }
+                });
+
+                loadStewie();
+            });
+
+            controls = new THREE.PointerLockControls(camera, document.body);
+            camera.position.set(0, 2, 0);
+
+            document.getElementById('startButton').onclick = function () {
+                controls.lock();
+                document.getElementById('startScreen').style.display = 'none';
+
+                // Stop theme and start game music
+                familyGuyTheme.pause();
+                familyGuyTheme.currentTime = 0;
+                loonboon.play().catch(error => console.log("Audio playback failed:", error));
+            }
+
+            document.addEventListener('keydown', (event) => {
+                switch (event.code) {
+                    case 'KeyW': moveForward = true; break;
+                    case 'KeyS': moveBackward = true; break;
+                    case 'KeyA': moveLeft = true; break;
+                    case 'KeyD': moveRight = true; break;
+                }
+            });
+
+            document.addEventListener('keyup', (event) => {
+                switch (event.code) {
+                    case 'KeyW': moveForward = false; break;
+                    case 'KeyS': moveBackward = false; break;
+                    case 'KeyA': moveLeft = false; break;
+                    case 'KeyD': moveRight = false; break;
+                }
+            });
+
+            document.addEventListener('click', throwRock);
+        }
+
+        function initializeAudio() {
+            familyGuyTheme = document.getElementById('familyGuyTheme');
+            loonboon = document.getElementById('loonboon');
+            stewiePain = document.getElementById('stewiePain');
+
+            // Play theme on load
+            familyGuyTheme.play().catch(error => console.log("Audio playback failed:", error));
+        }
+
+        // function loadStewie() {
+        //     const loader = new THREE.GLTFLoader();
+        //     loader.load('stewie_griffin_psp_fixed (1).glb', (gltf) => {
+        //         stewie = gltf.scene;
+        //         stewie.position.set(5, 0, 5);
+        //         stewie.scale.set(0.8, 0.8, 0.8);
+        //         scene.add(stewie);
+        //     });
+        // }
+
+        function loadStewie() {
+    const textureLoader = new THREE.TextureLoader();
+        textureLoader.load('ROBOTIE.png', (texture) => {
+        const stewieMaterial = new THREE.SpriteMaterial({ 
+            map: texture,
+            transparent: true
+        });
+        
+        stewie = new THREE.Sprite(stewieMaterial);
+        stewie.position.set(5, 1, 5);
+    
+        stewie.scale.set(2, 2, 1);
+        
+        // Add to scene
+        scene.add(stewie);
+    });
+}
+
+        function throwRock() {
+            if (!controls.isLocked) return;
+
+            const rockTexture = new THREE.TextureLoader().load('pngtree-close-up-of-big-stone-isolated-big-rock-png-image_10211347.png');
+            const rockMaterial = new THREE.SpriteMaterial({ map: rockTexture });
+            const rock = new THREE.Sprite(rockMaterial);
+            rock.scale.set(1, 1, 1);
+
+            rock.position.copy(camera.position);
+            rock.velocity = camera.getWorldDirection(new THREE.Vector3()).multiplyScalar(0.8);
+            scene.add(rock);
+            rocks.push(rock);
+        }
+
+        function isWithinBounds(position) {
+            return position.x >= MAP_BOUNDS.minX &&
+                position.x <= MAP_BOUNDS.maxX &&
+                position.z >= MAP_BOUNDS.minZ &&
+                position.z <= MAP_BOUNDS.maxZ;
+        }
+
+        function updateStewiePosition() {
+            if (!stewie) return;
+
+            let changeDirectionChance = 0.02;
+            if (stewie.position.x < PREFERRED_BOUNDS.minX ||
+                stewie.position.x > PREFERRED_BOUNDS.maxX ||
+                stewie.position.z < PREFERRED_BOUNDS.minZ ||
+                stewie.position.z > PREFERRED_BOUNDS.maxZ) {
+                changeDirectionChance = 0.1;
+            }
+
+            if (Math.random() < changeDirectionChance) {
+                if (stewie.position.x < PREFERRED_BOUNDS.minX ||
+                    stewie.position.x > PREFERRED_BOUNDS.maxX ||
+                    stewie.position.z < PREFERRED_BOUNDS.minZ ||
+                    stewie.position.z > PREFERRED_BOUNDS.maxZ) {
+                    stewieDirection.x = (Math.random() - 0.5) + (0 - stewie.position.x) * 0.1;
+                    stewieDirection.z = (Math.random() - 0.5) + (0 - stewie.position.z) * 0.1;
+                } else {
+                    stewieDirection.x = Math.random() - 0.5;
+                    stewieDirection.z = Math.random() - 0.5;
+                }
+                stewieDirection.normalize();
+            }
+
+            const nextPosition = stewie.position.clone().add(stewieDirection.clone().multiplyScalar(stewieSpeed));
+
+            let collision = false;
+            walls.forEach(wall => {
+                if (wall.containsPoint(nextPosition)) {
+                    collision = true;
+                    stewieDirection.multiplyScalar(-1);
+                }
+            });
+
+            if (!isWithinBounds(nextPosition)) {
+                stewieDirection.multiplyScalar(-1);
+                collision = true;
+            }
+
+            if (!collision) {
+                stewie.position.copy(nextPosition);
+                stewie.lookAt(stewie.position.clone().add(stewieDirection));
+            }
+        }
+
+        function updatePlayerPosition() {
+            velocity.x = 0;
+            velocity.z = 0;
+
+            if (moveForward) velocity.z -= MOVEMENT_SPEED;
+            if (moveBackward) velocity.z += MOVEMENT_SPEED;
+            if (moveLeft) velocity.x -= MOVEMENT_SPEED;
+            if (moveRight) velocity.x += MOVEMENT_SPEED;
+
+            if (velocity.length() > 0) {
+                velocity.normalize().multiplyScalar(MOVEMENT_SPEED);
+            }
+
+            const nextPosition = camera.position.clone();
+            nextPosition.add(velocity);
+
+            let collision = false;
+            walls.forEach(wall => {
+                if (wall.containsPoint(nextPosition)) {
+                    collision = true;
+                }
+            });
+
+            if (!isWithinBounds(nextPosition)) {
+                nextPosition.x = Math.max(MAP_BOUNDS.minX, Math.min(MAP_BOUNDS.maxX, nextPosition.x));
+                nextPosition.z = Math.max(MAP_BOUNDS.minZ, Math.min(MAP_BOUNDS.maxZ, nextPosition.z));
+
+                if (isWithinBounds(new THREE.Vector3(camera.position.x + velocity.x, camera.position.y, camera.position.z))) {
+                    controls.moveRight(velocity.x);
+                }
+                if (isWithinBounds(new THREE.Vector3(camera.position.x, camera.position.y, camera.position.z - velocity.z))) {
+                    controls.moveForward(-velocity.z);
+                }
+                return;
+            }
+
+            if (!collision) {
+                controls.moveRight(velocity.x);
+                controls.moveForward(-velocity.z);
+            }
+        }
+
+        function checkRockCollisions() {
+            if (gameWon) return;
+
+            rocks.forEach((rock, index) => {
+                if (!rock || !stewie) return;
+
+                rock.position.add(rock.velocity);
+
+                if (rock.position.distanceTo(stewie.position) < 1) {
+                    scene.remove(rock);
+                    rocks.splice(index, 1);
+                    hits++;
+                    document.getElementById('hits').textContent = hits;
+
+                    // Play pain sound
+                    stewiePain.currentTime = 0;
+                    stewiePain.play().catch(error => console.log("Audio playback failed:", error));
+
+                    // Check for win condition
+                    if (hits >= 100 && !gameWon) {
+                        gameWon = true;
+                        showWinScreen();
+                    }
+                }
+
+                if (!isWithinBounds(rock.position)) {
+                    scene.remove(rock);
+                    rocks.splice(index, 1);
+                }
+
+                walls.forEach(wall => {
+                    if (wall.containsPoint(rock.position)) {
+                        scene.remove(rock);
+                        rocks.splice(index, 1);
+                    }
+                });
+            });
+        }
+
+        function showWinScreen() {
+            loonboon.pause();
+            const winScreen = document.createElement('div');
+            winScreen.id = 'winScreen';
+            winScreen.innerHTML = `
+                <h1>Congratulations!</h1>
+                <p>Stewie has received several concussions.</p>
+                <p>You have won!</p>
+                <button onclick="location.reload()">Play Again</button>
+            `;
+            document.body.appendChild(winScreen);
+            winScreen.style.display = 'block';
+            controls.unlock();
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            updatePlayerPosition();
+            updateStewiePosition();
+            checkRockCollisions();
+            renderer.render(scene, camera);
+        }
+
+        init();
+        initializeAudio();
+        animate();
+
+        window.addEventListener('resize', onWindowResize, false);
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+    </script>
+</body>
+
+</html>
