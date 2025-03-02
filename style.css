@@ -1,0 +1,438 @@
+body,
+html {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #f0f0f0;
+}
+
+#score-display {
+  position: fixed;
+  top: 90px;
+  left: 10px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+#game-container {
+  text-align: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  padding-top: 60px;
+}
+
+#game-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
+
+#rock {
+  font-size: 100px;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.1s;
+  margin-bottom: 20px;
+}
+
+#rock:active {
+  transform: scale(0.95);
+}
+
+#counter {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+#save-load-button {
+  position: fixed;
+  top: 50px;
+  left: 10px;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+#rebirth-counter {
+  position: fixed;
+  top: 15px;
+  left: 10px;
+  color: white;
+  background-color: #333;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  z-index: 1001;
+}
+
+#save-load-interface {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 5px;
+  z-index: 2000;
+  width: 250px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#save-load-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1999;
+}
+
+.interface-button {
+  margin: 10px 0;
+  padding: 10px 20px;
+  background-color: #008CBA;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+}
+
+#reset-button {
+  background-color: #ff0000;
+  margin-top: 20px;
+}
+
+#shop,
+#upgrade-shop {
+  flex: 0 0 300px;
+  background-color: #e0e0e0;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-left: 20px;
+}
+
+#rocks-per-second {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.shop-item {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.shop-item button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  float: right;
+}
+
+.shop-item button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.item-count {
+  font-size: 14px;
+  margin-top: 5px;
+  text-align: center;
+}
+
+.item-emojis {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 5px;
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+.item-emojis span {
+  font-size: 16px;
+  margin: 2px;
+}
+
+#upgrade-shop {
+  background-color: #d0d0d0;
+}
+
+@keyframes orbit {
+  from {
+    transform: rotate(var(--start-angle)) translateX(var(--orbit-radius)) rotate(calc(-1 * var(--start-angle)));
+  }
+
+  to {
+    transform: rotate(calc(360deg + var(--start-angle))) translateX(var(--orbit-radius)) rotate(calc(-360deg - var(--start-angle)));
+  }
+}
+
+#rock-container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+
+#rock {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.05s;
+}
+
+#rock:active {
+  transform: translate(-50%, -50%) scale(0.95);
+}
+
+.orbiting-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 24px;
+  animation: orbit linear infinite;
+  --orbit-radius: 100px;
+  --orbit-duration: 5s;
+  --start-angle: 0deg;
+}
+
+#beta-notice {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  font-style: italic;
+  color: #888;
+  font-size: 12px;
+}
+
+.upgrade-effect {
+  font-size: 12px;
+  color: #666;
+  margin-top: 5px;
+  font-style: italic;
+}
+
+@keyframes fadeUpAndOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+}
+
+#rebirth-container {
+  position: fixed;
+  bottom: 10px;
+  right: 710px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+#rebirth-button {
+  background-color: #45a049;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+#rebirth-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+#rebirth-button {
+  position: relative;
+}
+
+#rebirth-button::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  white-space: pre-wrap;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s;
+  width: 250px;
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.4;
+  z-index: 1000;
+}
+
+#rebirth-button:hover::after {
+  visibility: visible;
+  opacity: 1;
+}
+
+.can-rebirth {
+  color: #FFD700;
+  font-weight: bold;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700;
+  }
+
+  to {
+    text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+  }
+}
+
+#offline-income-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 2px solid #4CAF50;
+  border-radius: 10px;
+  padding: 20px;
+  z-index: 2000;
+  text-align: center;
+}
+
+#offline-income-popup h2 {
+  color: #4CAF50;
+}
+
+#offline-income-popup button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#offline-income-popup button:hover {
+  background-color: #45a049;
+}
+
+#rebirth-confirmation {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 2px solid #4CAF50;
+  border-radius: 10px;
+  padding: 20px;
+  z-index: 2001;
+  text-align: center;
+  max-width: 80%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#rebirth-confirmation h2 {
+  color: #4CAF50;
+}
+
+#rebirth-confirmation button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#rebirth-confirmation button:hover {
+  background-color: #45a049;
+}
+
+#rebirth-confirmation ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#rebirth-confirmation li {
+  margin-bottom: 5px;
+}
+
+#splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 1s ease-out;
+}
+
+#splash-screen img {
+  max-width: 100%;
+  max-height: 80%;
+  margin-bottom: 20px;
+}
+
+#enter-game-button {
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#enter-game-button:hover {
+  background-color: #45a049;
+}

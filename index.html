@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+  <meta name="referrer" content="no-referrer-when-downgrade">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock Clicker</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="game.js" defer></script>
+</head>
+<body>
+  <div id="splash-screen">
+    <img src="https://storage.wildwest.gg/uploads/2025-01-29T13:20:46.549Z_screenshot-2024-09-07-at-1.png" alt="Splash Screen">
+    <button id="enter-game-button">Enter Game</button>
+  </div>
+  
+  <div id="game-container">
+    <div id="game-left">
+      <div id="counter">0</div>
+      <div id="rocks-per-second">0 rocks/s</div>
+      <div id="rock-container">
+        <div id="rock">🪨</div>
+        <div id="orbiting-items"></div>
+      </div>
+    </div>
+    
+    <div id="shop"></div>
+    <div id="upgrade-shop"></div>
+    
+    <div id="rebirth-counter"></div>
+    
+    <button id="save-load-button">Save/Load</button>
+    
+    <div id="save-load-interface">
+      <button id="save-button" class="interface-button">Save</button>
+      <button id="load-button" class="interface-button">Load</button>
+      <button id="reset-button" class="interface-button">Reset Game</button>
+    </div>
+    
+    <div id="score-display">Score: 0</div>
+    
+    <div id="rebirth-container">
+      <div id="rebirth-info"></div>
+      <button id="rebirth-button" disabled title="Rebirth Benefits:
+• Increased item cap
+• Increased income multiplier
+• Increased diamond reward cap
+Warnings:
+• All items will be reset
+• All upgrades will be reset
+• Rock counter will be reset to 0
+• Score will remain unchanged">Rebirth</button>
+    </div>
+    
+    <div id="beta-notice">Game in BETA. Everything subject to change. No guarantees for anything.</div>
+  </div>
+</body>
+</html>
