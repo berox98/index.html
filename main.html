@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$VANPEP ART</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #004d28;
+            padding: 20px;
+            touch-action: none;
+            background-image: url("/background.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .controls {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .color-palette {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 800px;
+        }
+
+        .tool-controls {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #canvas {
+            background-color: white;
+            border: 2px solid #333;
+            border-radius: 8px;
+            cursor: crosshair;
+            max-width: 100%;
+            touch-action: none;
+        }
+
+        .color-btn {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #333;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .color-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .color-btn.active {
+            border: 3px solid #000;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        #clear-btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ff4444;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        #clear-btn:hover {
+            background-color: #ff0000;
+        }
+
+        .tool-btn {
+    padding: 10px 20px;
+    font-size: 20px;  /* Increased font size for emoji */
+    background-color: #f0f0f0;
+    color: #333;
+    border: 2px solid #333;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 50px;
+    min-height: 50px;
+}
+
+        .tool-btn.active {
+            background-color: #333;
+            color: white;
+        }
+
+        .tool-btn:hover {
+            background-color: #ddd;
+        }
+
+        .tool-btn.active:hover {
+            background-color: #444;
+        }
+
+        #size-slider {
+            width: 150px;
+        }
+
+        .size-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .download-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.download-btn:hover {
+    background-color: #45a049;
+}
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <div class="color-palette">
+            <button class="color-btn active" style="background-color: #000000;" data-color="#000000"></button>
+            <button class="color-btn" style="background-color: #ff0000;" data-color="#ff0000"></button>
+            <button class="color-btn" style="background-color: #00ff00;" data-color="#00ff00"></button>
+            <button class="color-btn" style="background-color: #0000ff;" data-color="#0000ff"></button>
+            <button class="color-btn" style="background-color: #ffff00;" data-color="#ffff00"></button>
+            <button class="color-btn" style="background-color: #ff00ff;" data-color="#ff00ff"></button>
+            <button class="color-btn" style="background-color: #ff8800;" data-color="#ff8800"></button>
+            <button class="color-btn" style="background-color: #00ffff;" data-color="#00ffff"></button>
+            <button class="color-btn" style="background-color: #8800ff;" data-color="#8800ff"></button>
+            <button class="color-btn" style="background-color: #ff0088;" data-color="#ff0088"></button>
+            <button class="color-btn" style="background-color: #00ff88;" data-color="#00ff88"></button>
+            <button class="color-btn" style="background-color: #888888;" data-color="#888888"></button>
+            <button class="color-btn" style="background-color: #ffffff;" data-color="#ffffff"></button>
+            <button id="eraser-btn" class="tool-btn">ERASER 🧽</button>
+        </div>
+        <div class="tool-controls">
+            <div class="size-container">
+                <input type="range" id="size-slider" min="1" max="50" value="5">
+                <span id="size-display" style="color: white;">5px</span>
+            </div>
+            <button id="clear-btn">Clear Canvas</button>
+            <!-- <button id="download-btn" class="download-btn">Download Art 🖼️</button> -->
+        </div>
+    </div>
+    <canvas id="canvas" width="800" height="600"></canvas>
+    
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const colorBtns = document.querySelectorAll('.color-btn');
+        const clearBtn = document.getElementById('clear-btn');
+        const sizeSlider = document.getElementById('size-slider');
+        const sizeDisplay = document.getElementById('size-display');
+        const eraserBtn = document.getElementById('eraser-btn');
+
+        let isDrawing = false;
+        let currentColor = '#000000';
+        let lastColor = '#000000';
+        let isEraser = false;
+        let currentSize = 5;
+
+        // Set initial canvas size
+        function resizeCanvas() {
+            const containerWidth = Math.min(800, window.innerWidth - 40);
+            const containerHeight = (containerWidth * 3) / 4;
+            
+            canvas.style.width = `${containerWidth}px`;
+            canvas.style.height = `${containerHeight}px`;
+        }
+
+        // Initialize canvas size
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // Drawing functions
+        function startDrawing(e) {
+            isDrawing = true;
+            draw(e);
+        }
+
+        function stopDrawing() {
+            isDrawing = false;
+            ctx.beginPath();
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+
+            const rect = canvas.getBoundingClientRect();
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+
+            let x, y;
+            
+            if (e.type.includes('touch')) {
+                x = (e.touches[0].clientX - rect.left) * scaleX;
+                y = (e.touches[0].clientY - rect.top) * scaleY;
+            } else {
+                x = (e.clientX - rect.left) * scaleX;
+                y = (e.clientY - rect.top) * scaleY;
+            }
+
+            ctx.lineWidth = currentSize;
+            ctx.lineCap = 'round';
+            ctx.strokeStyle = currentColor;
+
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+        }
+
+        // Event listeners for mouse
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('mouseout', stopDrawing);
+
+        // Event listeners for touch
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            startDrawing(e);
+        });
+        canvas.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            draw(e);
+        });
+        canvas.addEventListener('touchend', stopDrawing);
+
+        // Color selection
+        colorBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                colorBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentColor = btn.dataset.color;
+                lastColor = currentColor;
+                isEraser = false;
+                eraserBtn.classList.remove('active');
+            });
+        });
+
+        // Eraser functionality
+        eraserBtn.addEventListener('click', () => {
+            isEraser = !isEraser;
+            eraserBtn.classList.toggle('active');
+            
+            if (isEraser) {
+                colorBtns.forEach(b => b.classList.remove('active'));
+                currentColor = '#ffffff';
+            } else {
+                currentColor = lastColor;
+                colorBtns.forEach(btn => {
+                    if (btn.dataset.color === lastColor) {
+                        btn.classList.add('active');
+                    }
+                });
+            }
+        });
+
+        // Clear canvas
+        clearBtn.addEventListener('click', () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        });
+
+        // Size slider
+        sizeSlider.addEventListener('input', (e) => {
+            currentSize = e.target.value;
+            sizeDisplay.textContent = `${currentSize}px`;
+        });
+
+    // Download functionality
+// const downloadBtn = document.getElementById('download-btn');
+
+// downloadBtn.addEventListener('click', () => {
+//     // Create a temporary link
+//     const link = document.createElement('a');
+    
+//     // Set the download name
+//     link.download = 'my-vanpep-art.png';
+    
+//     // Convert the canvas to a data URL
+//     const dataUrl = canvas.toDataURL('image/png');
+//     link.href = dataUrl;
+    
+//     // Simulate click to trigger download
+//     document.body.appendChild(link);
+//     link.click();
+//     document.body.removeChild(link);
+// });
+    </script>
+</body>
+</html>
