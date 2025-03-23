@@ -26,31 +26,32 @@ document.addEventListener('DOMContentLoaded', function() {
 function initializeLoading() {
     const now = new Date();
     
-    // Set a fixed target time - this should be your actual launch time
-    // For example, let's use 8:00 PM today (or tomorrow if it's already past 8 PM)
+    // Set a fixed target time in UTC (Universal Coordinated Time)
+    // For example, let's use 8:00 PM UTC today (or tomorrow if it's already past 8 PM UTC)
     targetDate = new Date();
-    targetDate.setHours(20, 0, 0, 0); // 8:00:00.000 PM
+    targetDate.setUTCHours(19, 0, 0, 0); // 8:00:00.000 PM UTC
     
-    // If it's already past 8 PM, use 8 PM tomorrow
+    // If it's already past 8 PM UTC, use 8 PM UTC tomorrow
     if (now > targetDate) {
-        targetDate.setDate(targetDate.getDate() + 1);
+        targetDate.setUTCDate(targetDate.getUTCDate() + 1);
     }
     
     // Set start time to 4 hours before target
     startDate = new Date(targetDate);
-    startDate.setHours(startDate.getHours() - 4); // 4 hours before target
+    startDate.setUTCHours(startDate.getUTCHours() - 4); // 4 hours before target
     
     // Total duration in milliseconds
     totalDuration = targetDate - startDate;
     
-    // Display the countdown
+    // Display the countdown with the target time in local time for user convenience
     const options = { 
         weekday: 'long', 
         year: 'numeric', 
         month: 'long', 
         day: 'numeric',
         hour: '2-digit',
-        minute: '2-digit'
+        minute: '2-digit',
+        timeZoneName: 'short' // Shows the time zone
     };
     document.getElementById('countdown').textContent = `Target: Lulu Release`;
     
