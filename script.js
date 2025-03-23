@@ -70,7 +70,7 @@ function initializeLoading() {
     document.getElementById('countdown').textContent = `Target: ${durationText}`;
     
     // Start the loading progress - update every minute instead of every 100ms
-    loadingInterval = setInterval(updateProgress, 60000); // Update every minute
+    loadingInterval = setInterval(updateProgress, 20000); // Update every minute
     
     // Call once immediately to show initial state
     updateProgress();
