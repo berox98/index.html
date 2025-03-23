@@ -48,7 +48,7 @@ function initializeLoading() {
         hour: '2-digit',
         minute: '2-digit'
     };
-    document.getElementById('countdown').textContent = `Target: ${targetDate.toLocaleDateString(undefined, options)}`;
+    document.getElementById('countdown').textContent = `Target: Lulu release`;
     
     // Start the loading progress - update every 30 seconds
     loadingInterval = setInterval(updateProgress, 30000); // Update every 30 seconds
