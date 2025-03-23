@@ -1,0 +1,108 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    font-family: 'Courier New', monospace;
+    color: #e18c31;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 10px #e18c31;
+}
+
+.glitch-letter {
+    display: inline-block;
+    transition: color 0.1s;
+}
+
+.progress-container {
+    width: 60%;
+    max-width: 500px;
+    background-color: #7e522148;
+    border-radius: 10px;
+    padding: 3px;
+    box-shadow: 0 0 15px #e18c31;
+    margin: 0 auto;
+}
+
+.progress-bar {
+    height: 20px;
+    background: linear-gradient(90deg, #e18c31, #ac661c, #e18c31);
+    border-radius: 8px;
+    width: 0%;
+    transition: width 0.3s ease;
+    position: relative;
+}
+
+.progress-text {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    color: #e18c31;
+}
+
+.countdown {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #e18c31;
+}
+
+.glow {
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 5px #e18c31, 0 0 10px #e18c31;
+    }
+    to {
+        text-shadow: 0 0 20px #e18c31, 0 0 30px #e18c31, 0 0 40px #e18c31;
+    }
+}
+
+/* Particle effect */
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, #e18c31, transparent);
+    pointer-events: none;
+    opacity: 0;
+    animation: float 3s infinite ease-in-out;
+    box-shadow: 0 0 10px #e18c31, 0 0 20px #e18c31;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
