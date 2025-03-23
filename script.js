@@ -27,14 +27,10 @@ function initializeLoading() {
     const now = new Date();
     
     // Set a fixed target time in UTC (Universal Coordinated Time)
-    // For example, let's use 8:00 PM UTC today (or tomorrow if it's already past 8 PM UTC)
+    // For tomorrow at 8:00 PM UTC
     targetDate = new Date();
+    targetDate.setUTCDate(targetDate.getUTCDate() + 1); // Set to tomorrow
     targetDate.setUTCHours(19, 0, 0, 0); // 8:00:00.000 PM UTC
-    
-    // If it's already past 8 PM UTC, use 8 PM UTC tomorrow
-    if (now > targetDate) {
-        targetDate.setUTCDate(targetDate.getUTCDate() + 1);
-    }
     
     // Set start time to 4 hours before target
     startDate = new Date(targetDate);
