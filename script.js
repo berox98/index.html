@@ -28,15 +28,13 @@ function initializeLoading() {
     // You would replace this with your actual launch date
     const now = new Date();
     
-    // Create a date for noon tomorrow (or specify your exact target date)
+    // Create a target date 8 hours from now
     targetDate = new Date();
-    targetDate.setDate(now.getDate() + 1); // next day
-    targetDate.setHours(12, 0, 0, 0); // at 12:00:00.000 exactly
+    targetDate.setTime(now.getTime() + (4 * 60 * 60 * 1000)); // 8 hours from now
     
-    // Fixed start time - 12 hours before target
+    // Set start time to now
     // This defines the total duration of the countdown
-    startDate = new Date(targetDate);
-    startDate.setHours(startDate.getHours() - 12); // 12 hour countdown
+    startDate = new Date(now); // Current time as start
     
     // Total duration in milliseconds
     totalDuration = targetDate - startDate;
@@ -50,7 +48,7 @@ function initializeLoading() {
         hour: '2-digit',
         minute: '2-digit'
     };
-    document.getElementById('countdown').textContent = `Target: Lulu release`;
+    document.getElementById('countdown').textContent = `Target: ${targetDate.toLocaleDateString(undefined, options)}`;
     
     // Start the loading progress - update every 30 seconds
     loadingInterval = setInterval(updateProgress, 30000); // Update every 30 seconds
