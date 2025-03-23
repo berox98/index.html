@@ -24,17 +24,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Main initialization
 function initializeLoading() {
-    // Set a fixed global end time - This example uses noon tomorrow
-    // You would replace this with your actual launch date
     const now = new Date();
     
-    // Create a target date 8 hours from now
+    // Set a fixed target time - this should be your actual launch time
+    // For example, let's use 8:00 PM today (or tomorrow if it's already past 8 PM)
     targetDate = new Date();
-    targetDate.setTime(now.getTime() + (4 * 60 * 60 * 1000)); // 8 hours from now
+    targetDate.setHours(20, 0, 0, 0); // 8:00:00.000 PM
     
-    // Set start time to now
-    // This defines the total duration of the countdown
-    startDate = new Date(now); // Current time as start
+    // If it's already past 8 PM, use 8 PM tomorrow
+    if (now > targetDate) {
+        targetDate.setDate(targetDate.getDate() + 1);
+    }
+    
+    // Set start time to 4 hours before target
+    startDate = new Date(targetDate);
+    startDate.setHours(startDate.getHours() - 4); // 4 hours before target
     
     // Total duration in milliseconds
     totalDuration = targetDate - startDate;
@@ -48,7 +52,7 @@ function initializeLoading() {
         hour: '2-digit',
         minute: '2-digit'
     };
-    document.getElementById('countdown').textContent = `Target: Lulu release`;
+    document.getElementById('countdown').textContent = `Target: Lulu Release`;
     
     // Start the loading progress - update every 30 seconds
     loadingInterval = setInterval(updateProgress, 30000); // Update every 30 seconds
@@ -72,8 +76,17 @@ function updateProgress() {
     const progressBar = document.getElementById('progressBar');
     const progressPercent = document.getElementById('progressPercent');
     
-    progressBar.style.width = percentage + '%';
+    // Ensure progress bar is at least 0.5% wide to be visible
+    progressBar.style.width = Math.max(0.5, percentage) + '%';
     progressPercent.textContent = Math.floor(percentage);
+    
+    // Debug info
+    console.log("Current time:", now);
+    console.log("Start time:", startDate);
+    console.log("Target time:", targetDate);
+    console.log("Elapsed time (ms):", elapsed);
+    console.log("Total duration (ms):", totalDuration);
+    console.log("Progress percentage:", percentage + "%");
     
     // If loading is complete, trigger completion
     if (percentage >= 100) {
