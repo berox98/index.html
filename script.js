@@ -1,5 +1,5 @@
 // Configuration
-const DEFAULT_DURATION = 1; // 1 week in days
+const DEFAULT_DURATION = 1; // 1 day duration
 const SYMBOLS = ['@', '#', '$', '%', '&', '*', '!', '?', '<', '>', '=', '+', '^'];
 const GLITCH_CHANCE = 0.1;
 const GLITCH_DURATION = 150; // ms
@@ -7,6 +7,7 @@ const PARTICLES_COUNT = 75;
 
 // Global variables
 let targetDate;
+let startDate;
 let totalDuration;
 let loadingInterval;
 let glitchInterval;
@@ -23,54 +24,36 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Main initialization
 function initializeLoading() {
-    // Get duration from URL parameter or use default
-    const urlParams = new URLSearchParams(window.location.search);
-    const durationParam = urlParams.get('duration');
-    
-    let durationInDays = DEFAULT_DURATION;
-    let durationText = "Lulu Release";
-    
-    if (durationParam) {
-        if (durationParam.includes('day')) {
-            durationInDays = parseInt(durationParam);
-            durationText = `${durationInDays} days`;
-        } else if (durationParam.includes('week')) {
-            const weeks = parseInt(durationParam);
-            durationInDays = weeks * 7;
-            durationText = `${weeks} weeks`;
-        } else if (durationParam.includes('month')) {
-            const months = parseInt(durationParam);
-            durationInDays = months * 30;
-            durationText = `${months} months`;
-        } else if (durationParam.includes('hour')) {
-            const hours = parseInt(durationParam);
-            durationInDays = hours / 24;
-            durationText = `${hours} hours`;
-        } else if (durationParam.includes('minute')) {
-            const minutes = parseInt(durationParam);
-            durationInDays = minutes / (24 * 60);
-            durationText = `${minutes} minutes`;
-        } else {
-            // If just a number is provided, assume it's days
-            durationInDays = parseInt(durationParam) || DEFAULT_DURATION;
-            durationText = `${durationInDays} days`;
-        }
-    }
-    
-    // Set up the duration in milliseconds (real time)
-    // 1 day = 24 hours * 60 minutes * 60 seconds * 1000 milliseconds
-    const scaledDuration = durationInDays * 12 * 60 * 60 * 1000;
-    
-    // Set up the target date
+    // Set a fixed global end time - This example uses noon tomorrow
+    // You would replace this with your actual launch date
     const now = new Date();
-    totalDuration = scaledDuration;
-    targetDate = new Date(now.getTime() + scaledDuration);
+    
+    // Create a date for noon tomorrow (or specify your exact target date)
+    targetDate = new Date();
+    targetDate.setDate(now.getDate() + 1); // next day
+    targetDate.setHours(12, 0, 0, 0); // at 12:00:00.000 exactly
+    
+    // Fixed start time - 12 hours before target
+    // This defines the total duration of the countdown
+    startDate = new Date(targetDate);
+    startDate.setHours(startDate.getHours() - 12); // 12 hour countdown
+    
+    // Total duration in milliseconds
+    totalDuration = targetDate - startDate;
     
     // Display the countdown
-    document.getElementById('countdown').textContent = `Target: ${durationText}`;
+    const options = { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    };
+    document.getElementById('countdown').textContent = `Target: ${targetDate.toLocaleDateString(undefined, options)}`;
     
-    // Start the loading progress - update every minute instead of every 100ms
-    loadingInterval = setInterval(updateProgress, 20000); // Update every minute
+    // Start the loading progress - update every 30 seconds
+    loadingInterval = setInterval(updateProgress, 30000); // Update every 30 seconds
     
     // Call once immediately to show initial state
     updateProgress();
@@ -79,13 +62,13 @@ function initializeLoading() {
 // Update the progress bar
 function updateProgress() {
     const now = new Date();
-    const elapsed = now - (targetDate - totalDuration);
-    const remaining = targetDate - now;
     
-    // Calculate percentage
+    // Calculate how far we are between start and target
+    let elapsed = now - startDate;
     let percentage = (elapsed / totalDuration) * 100;
-    percentage = Math.min(100, percentage);
-    percentage = Math.max(0, percentage);
+    
+    // Constrain percentage between 0 and 100
+    percentage = Math.min(100, Math.max(0, percentage));
     
     // Update the DOM
     const progressBar = document.getElementById('progressBar');
@@ -131,7 +114,7 @@ function glitchLetters() {
             
             // Change to symbol
             element.textContent = randomSymbol;
-            element.style.color = '#e18c31';
+            element.style.color = '#0ff';
             
             // Change back after a short time
             setTimeout(() => {
