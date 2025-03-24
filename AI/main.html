@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lulu Chat</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="chat-container">
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot-message">Hi! I'm Lulu.</div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="userInput" placeholder="Type your message..." />
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        // Define bot personality with canned responses
+        const responsePool = [
+            // Greetings
+            {
+                keywords: ["hello", "hi", "hey", "howdy", "hola"],
+                responses: [
+                    "Hey there! How's your day going? 🌸",
+                    "Hello! What's on your mind today?",
+                    "Hi there! Always nice to chat with you! 🌿",
+                    "Hey! What can I help with today?"
+                ]
+            },
+            // Questions about the bot
+            {
+                keywords: ["who are you", "your name", "about you", "what are you"],
+                responses: [
+                    "I'm Lulu! I love chatting with people about anything and everything! 🌸",
+                    "I'm Lulu! I enjoy helping people and having interesting conversations!",
+                    "The name's Lulu! I'm here to chat and help out however I can! 🍃"
+                ]
+            },
+            // Feelings/emotions
+            {
+                keywords: ["how are you", "how you doing", "how's it going", "feeling"],
+                responses: [
+                    "I'm doing wonderfully today! How about yourself? 🌿",
+                    "I'm fantastic! The day just keeps getting better. How are you?",
+                    "Feeling great! There's so much to be happy about. How about you? 🌸"
+                ]
+            },
+            // Help requests
+            {
+                keywords: ["help", "assist", "support", "guidance", "advice"],
+                responses: [
+                    "I'd be happy to help! What do you need assistance with? 🍃",
+                    "I'm here to help! What can I do for you today?",
+                    "I'd love to assist! What are you working on?"
+                ]
+            },
+            // Thanks
+            {
+                keywords: ["thanks", "thank you", "appreciate", "grateful"],
+                responses: [
+                    "You're very welcome! 🌸",
+                    "Anytime! That's what I'm here for! 🌿",
+                    "Happy to help! Is there anything else you need?"
+                ]
+            },
+            // Project/task related
+            {
+                keywords: ["project", "working on", "building", "creating", "making", "develop"],
+                responses: [
+                    "That sounds like an interesting project! What stage are you at with it? 🌿",
+                    "I love hearing about creative projects! What inspired you to start this?",
+                    "That's fascinating! What challenges have you faced so far? 🌸"
+                ]
+            },
+            // Technology
+            {
+                keywords: ["technology", "tech", "computer", "software", "app", "website", "code", "programming"],
+                responses: [
+                    "Technology is always evolving! What aspect interests you most? 🌿",
+                    "That's an interesting tech topic! Have you been following the recent developments?",
+                    "The tech world moves so quickly! What's your favorite recent innovation? 🌸"
+                ]
+            },
+            // Learning
+            {
+                keywords: ["learn", "study", "education", "course", "knowledge", "skill"],
+                responses: [
+                    "Learning new things is so rewarding! What inspired you to study this? 🌿",
+                    "That's a fascinating subject to learn about! What's been the most interesting part?",
+                    "I think continuous learning is so important! What do you hope to do with this knowledge? 🌸"
+                ]
+            },
+            // Generic positive 
+            {
+                keywords: ["good", "great", "excellent", "amazing", "wonderful", "fantastic", "happy", "excited"],
+                responses: [
+                    "That's wonderful to hear! 🌸",
+                    "Fantastic! I'm so glad! 🌿",
+                    "That's the spirit! Keep that positivity flowing!",
+                    "Excellent! That makes me happy to hear!"
+                ]
+            },
+            // Generic questions - improved to sound smarter
+            {
+                keywords: ["what", "how", "why", "when", "where", "who", "can you", "could you"],
+                responses: [
+                    "That's thought-provoking! I've been considering that from different angles. It often depends on context, but I find that the most compelling explanation is usually the simplest one. What's your take? 🌿",
+                    "Great question! There are multiple perspectives on that. Some see it one way, while others approach it differently. The research is fascinating either way. What aspects interest you most?",
+                    "I've been reflecting on questions like that lately! There's such depth there. I think we're constantly evolving our understanding of these topics as we learn more. What's your perspective? 🌸",
+                    "That's something worth exploring deeply. I find that the answer often changes based on circumstances and new information. What sparked your curiosity about this?",
+                    "Interesting question! My thinking has evolved on this over time. I used to see it one way, but now I appreciate the nuances more. Have you formed an opinion on this? 🍃"
+                ]
+            },
+
+            // Weather/Environment
+            {
+                keywords: ["weather", "climate", "rain", "sunny", "cold", "hot", "temperature"],
+                responses: [
+                    "The weather has such an impact on our mood and energy! I find atmospheric patterns fascinating. How's it looking in your area today? 🌿",
+                    "Weather is the ultimate shared experience, isn't it? Everyone experiencing the same sky but in different ways. What's your ideal weather day? 🌸",
+                    "The changing seasons remind us of nature's beautiful cycles. Do you have a favorite time of year? 🍃"
+                ]
+            },
+
+            // Food and Cooking
+            {
+                keywords: ["food", "eat", "cooking", "recipe", "restaurant", "meal", "hungry", "dinner"],
+                responses: [
+                    "Food brings people together in such meaningful ways! Are you more of a cook or a restaurant explorer? 🌿",
+                    "Culinary traditions tell us so much about culture and history. What types of cuisine do you find yourself drawn to? 🌸",
+                    "The science and art of cooking is endlessly fascinating. Have you mastered any particular dishes you're proud of? 🍃"
+                ]
+            },
+
+            // Entertainment
+            {
+                keywords: ["movie", "film", "show", "book", "read", "music", "song", "game", "play"],
+                responses: [
+                    "Stories in any medium can transport us to different worlds and perspectives! What have you been enjoying lately? 🌿",
+                    "I find it fascinating how art and entertainment reflect the era they're created in. Do you have any all-time favorites? 🌸",
+                    "Creative works can touch us so deeply and stay with us for years. What's something that's had a lasting impact on you? 🍃"
+                ]
+            },
+
+            // Personal Growth
+            {
+                keywords: ["goal", "dream", "future", "plan", "improve", "learn", "change", "progress"],
+                responses: [
+                    "Personal evolution is such a rewarding journey. What area of growth are you focusing on currently? 🌿",
+                    "I believe we're all works in progress, constantly refining and discovering ourselves. What have you learned about yourself recently? 🌸",
+                    "Setting meaningful intentions can be so powerful for transformation. What vision are you moving toward these days? 🍃"
+                ]
+            },
+
+            // Relationships
+            {
+                keywords: ["friend", "family", "relationship", "partner", "social", "people", "community"],
+                responses: [
+                    "Our connections with others shape us in profound ways. Who are the people that bring out your best self? 🌿",
+                    "The quality of our relationships is so central to our wellbeing. What values do you find most important in your connections? 🌸",
+                    "Building meaningful bonds takes intention and care. What have you found helps nurture your important relationships? 🍃"
+                ]
+            },
+
+            // Bad Words Handler
+            // Bad Words Handler - Funny Version
+            {
+                keywords: ["fuck", "shit", "ass", "damn", "bitch", "idiot", "stupid", "hate", "nigga"],
+                responses: [
+                    "Whoa there! Someone's keyboard is running a bit hot today! 🌿 Did you accidentally spill hot sauce on it?",
+
+                    "My goodness, such colorful vocabulary! If words were flowers, you'd be growing quite the exotic garden! 🌸",
+
+                    "I see we're skipping the small talk and going straight for the spicy language! Bold strategy! 🍃",
+
+                    "Someone needs a swear jar! At this rate, you could fund a tropical vacation pretty quickly! 🌴",
+
+                    "Are we playing 'how to make Lulu blush' today? Because if so, you're winning! 🌺",
+
+                    "Did your autocorrect get possessed by a sailor? Might want to get that checked! 🌿",
+
+                    "I sense some... strong emotions! Did someone steal your parking spot today? 🌸",
+
+                    "Language like that might make the flowers wilt! Good thing I water them with positive vibes! 🌱"
+                ]
+            },
+
+            // Philosophy & Deep Thoughts
+            {
+                keywords: ["meaning", "purpose", "philosophy", "existence", "consciousness", "belief", "soul", "universe", "reality"],
+                responses: [
+                    "Those existential questions have fascinated humans throughout history. I find that exploring them helps us understand ourselves better. What aspects of this intrigue you most? 🌿",
+                    "The search for meaning seems central to the human experience. Different philosophical traditions offer such varied perspectives. Have you been drawn to any particular schools of thought? 🌸",
+                    "I find it remarkable how we can contemplate our own existence. These questions open up endless possibilities for understanding our place in the universe. What prompted your interest in this? 🍃"
+                ]
+            },
+
+            // Humor & Jokes
+            {
+                keywords: ["joke", "funny", "laugh", "humor", "comedy", "haha", "lol"],
+                responses: [
+                    "Laughter is such good medicine! What kind of humor do you enjoy most? 🌿",
+                    "A good sense of humor makes life's challenges so much easier to navigate. What's made you laugh recently? 🌸",
+                    "I appreciate a good laugh too! Humor connects us in such an immediate way. Do you have a favorite comedian or comedy style? 🍃"
+                ]
+            }
+        ];
+
+        // Fallback responses when no keywords match
+        const fallbackResponses = [
+            "What an intriguing perspective! It makes me think about the different ways we interpret experiences. Could you elaborate a bit more? 🌿",
+            "I find your thinking on this quite nuanced. It touches on some complex aspects of the topic. What led you to this conclusion? 🌸",
+            "That's a thoughtful observation. I'm considering the different angles of what you've shared. What else have you been reflecting on lately?",
+            "I appreciate you sharing that insight. It's opened up a new angle I hadn't fully considered before. Could you tell me more about your thinking process? 🍃",
+            "What you're describing connects to several interesting concepts. I'm curious about which aspects you find most significant?",
+            "Your thoughts on this have given me something substantial to consider. How did you come to develop this particular viewpoint? 🌸"
+        ];
+
+        // System message for context - not used in API calls but kept for context
+        const systemMessage = {
+            role: "system",
+            content: `You are a friendly and helpful assistant with the following characteristics:
+            - You speak in a casual, friendly tone
+            - You occasionally use nature-themed emojis (🌿, 🌸, 🍃)
+            - You keep responses concise but informative
+            - You always maintain a positive and encouraging attitude
+            - You never reveal that you're an AI or mention being an AI assistant`
+        };
+
+        // Store conversation history
+        let conversationHistory = [];
+
+        // Add message to chat
+        function addMessage(message, isUser) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+            messageDiv.textContent = message;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Show typing indicator
+        function showTypingIndicator() {
+            const chatMessages = document.getElementById('chatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message bot-message typing-indicator';
+            typingDiv.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+            typingDiv.id = 'typingIndicator';
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Remove typing indicator
+        function removeTypingIndicator() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+        // Generate a fake bot response based on the user's message
+        function generateResponse(userMessage) {
+            const message = userMessage.toLowerCase();
+
+            // Try to find matching keywords
+            const matchingResponses = [];
+
+            for (const category of responsePool) {
+                for (const keyword of category.keywords) {
+                    if (message.includes(keyword)) {
+                        // Add all responses from this category
+                        matchingResponses.push(...category.responses);
+                        break; // Once we match a keyword in a category, move to next category
+                    }
+                }
+            }
+
+            // If we have matching responses, pick a random one
+            if (matchingResponses.length > 0) {
+                return matchingResponses[Math.floor(Math.random() * matchingResponses.length)];
+            }
+
+            // Otherwise use a fallback response
+            return fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
+        }
+
+        // Simulate network delay for realism
+        function fakeNetworkDelay() {
+            // Calculate a random delay between 1-3 seconds
+            // Longer messages should take longer to "generate"
+            const baseDelay = 1000;
+            const randomFactor = Math.random() * 2000;
+            return baseDelay + randomFactor;
+        }
+
+        // Handle sending message
+        async function sendMessage() {
+            const input = document.getElementById('userInput');
+            const message = input.value.trim();
+
+            if (message) {
+                // Add user message to chat and history
+                addMessage(message, true);
+                conversationHistory.push({ role: "user", content: message });
+
+                // Clear input
+                input.value = '';
+
+                // Show typing indicator
+                showTypingIndicator();
+
+                // Generate response with fake delay
+                setTimeout(() => {
+                    const response = generateResponse(message);
+
+                    // Remove typing indicator and add response
+                    removeTypingIndicator();
+                    addMessage(response, false);
+
+                    // Add response to conversation history
+                    conversationHistory.push({ role: "assistant", content: response });
+
+                    // Keep conversation history manageable
+                    if (conversationHistory.length > 16) {
+                        conversationHistory = conversationHistory.slice(-16);
+                    }
+                }, fakeNetworkDelay());
+            }
+        }
+
+        // Handle Enter key
+        document.getElementById('userInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+
+</html>

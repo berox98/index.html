@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LULU</title>
+    <link rel="icon" type="image/png" href="lulu.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Modern Navbar */
+        .navbar {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(225, 140, 49, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #e18c31;
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #e18c31;
+        }
+
+        .buy-button {
+            background: #e18c31;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+
+        .buy-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 1rem;
+            background: radial-gradient(circle at center, rgba(225, 140, 49, 0.1) 0%, rgba(10, 10, 10, 0) 70%);
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            background: linear-gradient(90deg, #fff, #e18c31);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: #888;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .chat-container {
+            flex: 1;
+            background: rgba(10, 10, 10, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(225, 140, 49, 0.2);
+            height: 600px;
+        }
+
+        /* How to Buy Section */
+        .how-to-buy {
+            padding: 6rem 1rem;
+            background: #0f0f0f;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .step-card {
+            background: rgba(225, 140, 49, 0.1);
+            border: 1px solid rgba(225, 140, 49, 0.2);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1.5rem;
+        }
+
+        .step-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #e18c31;
+        }
+
+        .step-description {
+            color: #888;
+            line-height: 1.6;
+        }
+
+        /* Socials Section */
+        .socials {
+            padding: 6rem 1rem;
+            background: #0a0a0a;
+        }
+
+        .socials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .social-card {
+            background: rgba(225, 140, 49, 0.1);
+            border: 1px solid rgba(225, 140, 49, 0.2);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .social-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 1rem;
+        }
+
+        .social-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .social-description {
+            color: #888;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-button {
+            display: inline-block;
+            background: #e18c31;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s;
+        }
+
+        .social-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Tokenomics Section */
+        .tokenomics {
+            padding: 6rem 1rem;
+            background: #0f0f0f;
+        }
+
+        .tokenomics-card {
+            background: rgba(225, 140, 49, 0.1);
+            border: 1px solid rgba(225, 140, 49, 0.2);
+            padding: 3rem;
+            border-radius: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .token-info {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .token-symbol {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #e18c31;
+            margin-bottom: 1rem;
+        }
+
+        .tax-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .tax-item {
+            background: rgba(225, 140, 49, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .security-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .security-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #888;
+        }
+
+        .security-item::before {
+            content: "✓";
+            color: #e18c31;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .hero-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .step-card, .social-card {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">$LULU</a>
+            <div class="nav-links">
+                <a href="#" class="nav-link">HOME</a>
+                <a href="#howtobuy" class="nav-link">HOW TO BUY</a>
+                <a href="#socials" class="nav-link">SOCIALS</a>
+                <a href="#tokenomics" class="nav-link">TOKENOMICS</a>
+                <a href="#" class="buy-button">Buy On Pump</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Experience LULU, the new AI of Conversations</h1>
+                <p class="hero-subtitle">Interact with our intelligent LULU AI chatbot.</p>
+                <a href="#" class="buy-button">Start Holding Now!</a>
+            </div>
+            <div class="chat-container">
+                <iframe id="gameFrame" src="main.html" style="width: 100%; height: 100%; border: none;"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Buy Section -->
+    <section class="how-to-buy" id="howtobuy">
+        <div class="section-container">
+            <h2 class="section-title">How to Buy $LULU</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <img src="solana.jpg" alt="Solana" class="step-icon">
+                    <h3 class="step-title">Get Some Solana</h3>
+                    <p class="step-description">You can buy Solana on a variety of exchanges.</p>
+                </div>
+                <div class="step-card">
+                    <img src="phantom.jpg" alt="Phantom" class="step-icon">
+                    <h3 class="step-title">Transfer to Phantom</h3>
+                    <p class="step-description">Phantom is the most popular wallet on the Solana blockchain.</p>
+                </div>
+                <div class="step-card">
+                    <img src="pump.png" alt="Pump" class="step-icon">
+                    <h3 class="step-title">Buy on Pump</h3>
+                    <p class="step-description">You're now a $LULU AI holder!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Socials Section -->
+    <section class="socials" id="socials">
+        <div class="section-container">
+            <h2 class="section-title">Join Our Community</h2>
+            <div class="socials-grid">
+                <div class="social-card">
+                    <img src="twitter.jpg" alt="Twitter" class="social-icon">
+                    <h3 class="social-title">Twitter</h3>
+                    <p class="social-description">Follow us for updates and announcements</p>
+                    <a href="https://x.com/Luluthememe" class="social-button">Join Twitter</a>
+                </div>
+                <div class="social-card">
+                    <img src="telegram.jpg" alt="Telegram" class="social-icon">
+                    <h3 class="social-title">Telegram</h3>
+                    <p class="social-description">Join our community on Telegram</p>
+                    <a href="https://t.me/LULU_AI" class="social-button">Join Telegram</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tokenomics Section -->
+    <section class="tokenomics" id="tokenomics">
+        <div class="section-container">
+            <h2 class="section-title">Tokenomics</h2>
+            <div class="tokenomics-card">
+                <div class="token-info">
+                    <h3 class="token-symbol">$LULU</h3>
+                </div>
+                <div class="tax-grid">
+                    <div class="tax-item">
+                        <p>0% Buy Tax</p>
+                    </div>
+                    <div class="tax-item">
+                        <p>0% Sell Tax</p>
+                    </div>
+                </div>
+                <div class="security-list">
+                    <div class="security-item">Freeze Authority Revoked</div>
+                    <div class="security-item">Mint Authority Revoked</div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
