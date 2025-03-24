@@ -24,17 +24,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Main initialization
 function initializeLoading() {
-    const now = new Date();
+    targetDate = new Date(Date.UTC(2025, 2, 24, 20, 0, 0)); // Month is 0-indexed, so 2 = March
     
-    // Set a fixed target time in UTC (Universal Coordinated Time)
-    // For tomorrow at 8:00 PM UTC
-    targetDate = new Date();
-    targetDate.setUTCDate(targetDate.getUTCDate() + 1); // Set to tomorrow
-    targetDate.setUTCHours(19, 0, 0, 0); // 8:00:00.000 PM UTC
-    
-    // Set start time to 4 hours before target
-    startDate = new Date(targetDate);
-    startDate.setUTCHours(startDate.getUTCHours() - 4); // 4 hours before target
+    // Set start date to March 23, 2025, 8:00 PM UTC
+    startDate = new Date(Date.UTC(2025, 2, 23, 20, 0, 0));
     
     // Total duration in milliseconds
     totalDuration = targetDate - startDate;
