@@ -186,8 +186,8 @@ function loadingComplete() {
     // In a real implementation, you would redirect or reveal the main content
     console.log("Loading complete! Ready to show the main content.");
     
-    // After 3 seconds, we could redirect or show the main content
-    // setTimeout(() => {
-    //     window.location.href = "main.html";
-    // }, 3000);
+   setTimeout(() => {
+        console.log("Redirecting now!");
+        window.location.href = "AI/index.html";  // Path to your main page in the AI folder
+    }, 3000);
 }
