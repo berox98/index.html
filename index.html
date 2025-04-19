@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The GOAT - Next generation cryptocurrency on Solana. Secure, fast, community-driven.">
+    <title>The GOAT (GOAT) - Revolutionary Crypto Token</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- SEO Tags -->
+    <meta property="og:title" content="The GOAT (GOAT) - Revolutionary Crypto Token">
+    <meta property="og:description" content="The GOAT - Next generation cryptocurrency on Solana. Secure, fast, community-driven with a deflationary model.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="og-image.jpg">
+    <meta property="og:url" content="https://thegoat.io">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@TheVividGoat">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-container">
+            <div class="goat-logo-loader">
+                <svg viewBox="0 0 100 100" width="100" height="100">
+                    <path class="logo-path" d="M50,10 L90,50 L50,90 L10,50 Z" fill="none" stroke="#7bff00" stroke-width="4"></path>
+                    <text x="50" y="55" text-anchor="middle" class="logo-text">GOAT</text>
+                </svg>
+            </div>
+            <div class="loading-text">LOADING<span class="dot-1">.</span><span class="dot-2">.</span><span class="dot-3">.</span></div>
+        </div>
+    </div>
+
+    <!-- Cursor -->
+    <div class="cursor-dot-outline"></div>
+    <div class="cursor-dot"></div>
+
+    <!-- Background Elements -->
+    <div id="particles-js"></div>
+    <div class="crypto-bg"></div>
+
+    <!-- Fixed Button -->
+    <div class="fixed-cta">
+        <a href="#" class="btn-glow">Buy GOAT</a>
+    </div>
+
+    <!-- Header -->
+    <header class="crypto-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="logo.png" alt="The GOAT Logo">
+                    <div class="logo-text">The GOAT<span>GOAT</span></div>
+                </div>
+                <nav class="main-nav">
+                    <div class="menu-toggle">
+                        <div class="hamburger">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <ul class="nav-list">
+                        <li><a href="#about" class="nav-link">About</a></li>
+                        <li><a href="#tokenomics" class="nav-link">Tokenomics</a></li>
+                        <li><a href="#features" class="nav-link">Features</a></li>
+                        <li><a href="#roadmap" class="nav-link">Roadmap</a></li>
+                        <li><a href="#team" class="nav-link">Team</a></li>
+                        <li><a href="#faq" class="nav-link">FAQ</a></li>
+                    </ul>
+                </nav>
+                <div class="header-cta">
+                    <a href="#" class="buy-button">Buy Now</a>
+                    <div class="theme-toggle">
+                        <div class="theme-toggle-track">
+                            <div class="theme-toggle-thumb"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Floating Price Ticker -->
+    <div class="price-ticker">
+        <div class="price-ticker-content">
+            <div class="ticker-item">
+                <span class="ticker-label">GOAT/USD:</span>
+                <span class="ticker-value">$0.0042</span>
+                <span class="ticker-change positive">+12.5%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-label">Market Cap:</span>
+                <span class="ticker-value">$12.7M</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-label">Holders:</span>
+                <span class="ticker-value">18,542</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section with 3D Animation -->
+    <section class="hero-crypto">
+        <div class="hero-particles"></div>
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-text" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="tag-line">Next Generation Crypto</div>
+                    <h1><span>GOAT</span> The Goat</h1>
+                    <p>A revolutionary Solana-based token designed to redefine decentralized finance with security, speed, and community governance.</p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-value" id="counter-holders">0</div>
+                            <div class="stat-label">Holders</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="counter-mcap">$0</div>
+                            <div class="stat-label">Market Cap</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="counter-liquidity">$0</div>
+                            <div class="stat-label">Locked Liquidity</div>
+                        </div>
+                    </div>
+                    <div class="hero-buttons">
+                        <a href="#" class="primary-btn">Buy Token</a>
+                        <a href="#" class="secondary-btn">View Chart</a>
+                    </div>
+                    <div class="token-address">
+                        <span>Token Address:</span>
+                        <div class="address-container">
+                            <code>SOL7bx5G3UqRgf81XJ4AcDDwHv7ZqC6e2AhJSP</code>
+                            <button class="copy-btn" data-clipboard-text="SOL7bx5G3UqRgf81XJ4AcDDwHv7ZqC6e2AhJSP">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hero-socials">
+                        <a href="https://x.com/TheVividGoat" target="_blank" class="social-link twitter">
+                            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                            </svg>
+                        </a>
+                        <a href="https://t.me/thegoat" target="_blank" class="social-link telegram">
+                            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21.198 2.433a2.242 2.242 0 0 0-1.022.215l-16.5 7.5a2.25 2.25 0 0 0 .126 4.073l3.9 1.205 2.306 6.033c.143.373.49.626.887.626q.118 0 .236-.03a1 1 0 0 0 .73-.767l1.225-4.714 4.586 3.42a2.17 2.17 0 0 0 1.297.435 2.246 2.246 0 0 0 2.235-1.932l2.348-14.092a2.242 2.242 0 0 0-1.354-2.422z"></path>
+                                <line x1="10" y1="14" x2="20" y2="4"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-graphic" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="300">
+                    <div class="token-3d-container">
+                        <div class="token-3d">
+                            <div class="token-face front">
+                                <div class="token-inner">
+                                    <div class="token-symbol">GOAT</div>
+                                </div>
+                            </div>
+                            <div class="token-face back">
+                                <div class="token-inner">
+                                    <div class="token-symbol">GOAT</div>
+                                </div>
+                            </div>
+                            <div class="token-face left">
+                                <div class="token-inner"></div>
+                            </div>
+                            <div class="token-face right">
+                                <div class="token-inner"></div>
+                            </div>
+                            <div class="token-face top">
+                                <div class="token-inner"></div>
+                            </div>
+                            <div class="token-face bottom">
+                                <div class="token-inner"></div>
+                            </div>
+                        </div>
+                        <div class="token-reflection"></div>
+                        <div class="token-glow"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+                <div class="scroll-text">Scroll Down</div>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <!-- About Section with Animated Graphics -->
+        <section id="about" class="about-crypto">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <div class="section-tag">ABOUT</div>
+                    <h2>The <span>Vision</span></h2>
+                    <div class="crypto-divider"></div>
+                </div>
+                
+                <div class="about-crypto-content">
+                    <div class="about-crypto-item" data-aos="fade-right" data-aos-delay="200">
+                        <div class="tech-box">
+                            <div class="tech-overlay"></div>
+                            <div class="tech-content">
+                                <h3>The <span>Technology</span></h3>
+                                <p>The GOAT is built on Solana's cutting-edge blockchain, offering unparalleled transaction speeds of 65,000+ TPS with near-zero fees. Our custom-built smart contract includes advanced security features, automatic liquidity generation, and a deflationary token model.</p>
+                                <div class="tech-features">
+                                    <div class="tech-feature">
+                                        <div class="tech-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="tech-feature-text">
+                                            <h4>Security Audited</h4>
+                                            <p>Multi-layered security with Certik audit</p>
+                                        </div>
+                                    </div>
+                                    <div class="tech-feature">
+                                        <div class="tech-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="tech-feature-text">
+                                            <h4>Lightning Fast</h4>
+                                            <p>65,000+ transactions per second</p>
+                                        </div>
+                                    </div>
+                                    <div class="tech-feature">
+                                        <div class="tech-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="tech-feature-text">
+                                            <h4>Low Gas Fees</h4>
+                                            <p>Near-zero transaction costs</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="#" class="crypto-btn">Read Whitepaper</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-crypto-item" data-aos="fade-left" data-aos-delay="400">
+                        <div class="about-right">
+                            <div class="about-crypto-grid">
+                                <div class="about-crypto-stat">
+                                    <div class="stat-number" id="about-holders">1M+</div>
+                                    <div class="stat-label">Holders</div>
+                                </div>
+                                <div class="about-crypto-stat">
+                                    <div class="stat-number" id="about-exchanges">5+</div>
+                                    <div class="stat-label">Exchanges</div>
+                                </div>
+                                <div class="about-crypto-stat">
+                                    <div class="stat-number" id="about-transactions">100K+</div>
+                                    <div class="stat-label">Transactions</div>
+                                </div>
+                                <div class="about-crypto-stat">
+                                    <div class="stat-number" id="about-marketcap">$10M+</div>
+                                    <div class="stat-label">Market Cap</div>
+                                </div>
+                            </div>
+                            <div class="pulse-graph">
+                                <div class="graph-container">
+                                    <canvas id="price-chart"></canvas>
+                                </div>
+                                <div class="graph-info">
+                                    <div class="graph-title">GOAT Price (Last 30 Days)</div>
+                                    <div class="graph-value">+124.5%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tokenomics Section with Interactive Elements -->
+        <section id="tokenomics" class="tokenomics-crypto">
+            <div class="glowing-overlay"></div>
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <div class="section-tag">ECONOMICS</div>
+                    <h2>Token<span>omics</span></h2>
+                    <div class="crypto-divider"></div>
+                </div>
+                
+                <div class="tokenomics-crypto-grid">
+                    <div class="tokenomics-crypto-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card-glow"></div>
+                        <div class="crypto-card-inner">
+                            <div class="card-header">
+                                <h3>Token Metrics</h3>
+                                <div class="token-badge"><span>GOAT</span></div>
+                            </div>
+                            <div class="card-content">
+                                <div class="token-metric">
+                                    <div class="metric-label">Token Name</div>
+                                    <div class="metric-value">The Goat</div>
+                                </div>
+                                <div class="token-metric">
+                                    <div class="metric-label">Token Symbol</div>
+                                    <div class="metric-value">GOAT</div>
+                                </div>
+                                <div class="token-metric">
+                                    <div class="metric-label">Total Supply</div>
+                                    <div class="metric-value">1,000,000,000</div>
+                                </div>
+                                <div class="token-metric">
+                                    <div class="metric-label">Network</div>
+                                    <div class="metric-value">SOLANA</div>
+                                </div>
+                                <div class="token-metric">
+                                    <div class="metric-label">Token Type</div>
+                                    <div class="metric-value">UTILITY</div>
+                                </div>
+                                <div class="token-metric">
+                                    <div class="metric-label">Tax Structure</div>
+                                    <div class="metric-value">2% Buy | 2% Sell</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tokenomics-crypto-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="card-glow"></div>
+                        <div class="crypto-card-inner">
+                            <div class="card-header">
+                                <h3>Distribution</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="chart-container">
+                                    <canvas id="distribution-chart"></canvas>
+                                </div>
+                                <div class="distribution-legend">
+                                    <div class="legend-item">
+                                        <span class="legend-color" style="background-color: #7bff00;"></span>
+                                        <span class="legend-label">Liquidity - 50%</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-color" style="background-color: #00e5ff;"></span>
+                                        <span class="legend-label">Development - 20%</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-color" style="background-color: #a78bfa;"></span>
+                                        <span class="legend-label">Marketing - 15%</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-color" style="background-color: #f472b6;"></span>
+                                        <span class="legend-label">Team - 10%</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-color" style="background-color: #fcd34d;"></span>
+                                        <span class="legend-label">Community - 5%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tokenomics-crypto-card wide-card" data-aos="fade-up" data-aos-delay="600">
+                        <div class="card-glow"></div>
+                        <div class="crypto-card-inner">
+                            <div class="card-header">
+                                <h3>Token Utility</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="utility-grid">
+                                    <div class="utility-item">
+                                        <div class="utility-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                                                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                                            </svg>
+                                        </div>
+                                        <h4>Governance</h4>
+                                        <p>Vote on protocol changes and treasury allocation</p>
+                                    </div>
+                                    <div class="utility-item">
+                                        <div class="utility-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M19 21V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16"></path>
+                                                <path d="M12 11.5V19"></path>
+                                                <path d="m9 9 3-3 3 3"></path>
+                                            </svg>
+                                        </div>
+                                        <h4>Staking Rewards</h4>
+                                        <p>Earn up to 15% APY by staking your tokens</p>
+                                    </div>
+                                    <div class="utility-item">
+                                        <div class="utility-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
+                                                <path d="m9 12 2 2 4-4"></path>
+                                            </svg>
+                                        </div>
+                                        <h4>Platform Access</h4>
+                                        <p>Unlock premium features in the GOAT ecosystem</p>
+                                    </div>
+                                    <div class="utility-item">
+                                        <div class="utility-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M12 22V8"></path>
+                                                <path d="m5 12 7-4 7 4"></path>
+                                                <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8"></path>
+                                                <path d="M17 22V2H7v20"></path>
+                                            </svg>
+                                        </div>
+                                        <h4>Deflationary Model</h4>
+                                        <p>Automatic burns increase scarcity over time</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section with Animated Cards -->
+        <section id="features" class="features-crypto">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <div class="section-tag">BENEFITS</div>
+                    <h2>Key <span>Features</span></h2>
+                    <div class="crypto-divider"></div>
+                </div>
+                
+                <div class="crypto-features-grid">
+                    <div class="crypto-feature" data-aos="flip-left" data-aos-delay="100">
+                        <div class="feature-glow"></div>
+                        <div class="feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                        </div>
+                        <h3>Military-Grade Security</h3>
+                        <p>Our smart contracts undergo rigorous security audits to ensure your assets remain protected from vulnerabilities and exploits.</p>
+                        <div class="feature-more">
+                            <span>Learn More</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14"></path>
+                                <path d="m12 5 7 7-7 7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="crypto-feature" data-aos="flip-left" data-aos-delay="200">
+                        <div class="feature-glow"></div>
+                        <div class="feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+                            </svg>
+                        </div>
+                        <h3>Lightning-Fast Transactions</h3>
+                        <p>Experience transaction speeds of 65,000+ TPS with near-zero fees, making GOAT ideal for both micro-transactions and large transfers.</p>
+                        <div class="feature-more">
+                            <span>Learn More</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14"></path>
+                                <path d="m12 5 7 7-7 7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="crypto-feature" data-aos="flip-left" data-aos-delay="300">
+                        <div class="feature-glow"></div>
+                        <div class="feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                                <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                            </svg>
+                        </div>
+                        <h3>Community Governance</h3>
+                        <p>Vote on key protocol decisions, treasury allocations, and future developments through our decentralized governance system.</p>
+                        <div class="feature-more">
+                            <span>Learn More</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14"></path>
+                                <path d="m12 5 7 7-7 7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="crypto-feature" data-aos="flip-left" data-aos-delay="400">
+                        <div class="feature-glow"></div>
+                        <div class="feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                            </svg>
+                        </div>
+                        <h3>Deflationary Tokenomics</h3>
+                        <p>Our innovative economic model includes automatic burns that increase token scarcity over time, benefiting long-term holders.</p>
+                        <div class="feature-more">
+                            <span>Learn More</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14"></path>
+                                <path d="m12 5 7 7-7 7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Roadmap Section with Interactive Timeline -->
+        <section id="roadmap" class="roadmap-crypto">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <div class="section-tag">PROGRESS</div>
+                    <h2>Road<span>map</span></h2>
+                    <div class="crypto-divider"></div>
+                </div>
+                
+                <div class="roadmap-tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="tab-2023">2023</button>
+                        <button class="tab-btn" data-tab="tab-2024">2024</button>
+                        <button class="tab-btn" data-tab="tab-2025">2025</button>
+                    </div>
+                    
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab-2023">
+                            <div class="crypto-roadmap">
+                                <div class="roadmap-line"></div>
+                                
+                                <div class="roadmap-node" data-aos="fade-right">
+                                    <div class="roadmap-dot completed"></div>
+                                    <div class="roadmap-phase">
+                                        <div class="phase-quarter">Q1 2023</div>
+                                        <h3>Genesis Phase</h3>
+                                        <ul>
+                                            <li><span class="status completed">Completed</span> Token Smart Contract Development</li>
+                                            <li><span class="status completed">Completed</span> Security Audit by Certik</li>
+                                            <li><span class="status completed">Completed</span> Website Launch & Branding</li>
+                                            <li><span class="status completed">Completed</span> Initial Marketing Campaign</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="roadmap-node" data-aos="fade-left">
+                                    <div class="roadmap-dot in-progress"></div>
+                                    <div class="roadmap-phase">
+                                        <div class="phase-quarter">Q2 2023</div>
+                                        <h3>Expansion Phase</h3>
+                                        <ul>
+                                            <li><span class="status completed">Completed</span> DEX Listings (PancakeSwap, Raydium)</li>
+                                            <li><span class="status completed">Completed</span> Strategic Partnerships</li>
+                                            <li><span class="status completed">Completed</span> Community Growth Initiatives</li>
+                                            <li><span class="status completed">Completed</span> Global Marketing Campaign</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="roadmap-node" data-aos="fade-right">
+                                    <div class="roadmap-dot in-progress"></div>
+                                    <div class="roadmap-phase">
+                                        <div class="phase-quarter">Q3 2023</div>
+                                        <h3>Development Phase</h3>
+                                        <ul>
+                                            <li><span class="status completed">Completed</span> CEX Listings (2 Tier-2 Exchanges)</li>
+                                            <li><span class="status completed">Completed</span> Staking Program Launch</li>
+                                            <li><span class="status in-progress">In Progress</span> Development of Mobile Wallet</li>
+                                            <li><span class="status in-progress">In Progress</span> NFT Collection Development</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="roadmap-node" data-aos="fade-left">
+                                    <div class="roadmap-dot planned"></div>
+                                    <div class="roadmap-phase">
+                                        <div class="phase-quarter">Q4 2023</div>
+                                        <h3>Evolution Phase</h3>
+                                        <ul>
+                                            <li><span class="status completed">Completed</span> Governance System Launch</li>
+                                            <li><span class="status in-progress">In Progress</span> Mobile Wallet Beta Release</li>
+                                            <li><span class="status in-progress">In Progress</span> NFT Marketplace Integration</li>
+                                            <li><span class="status planned">Planned</span> Enhanced DeFi Features</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-pane" id="tab-2024">
+                            <div class="crypto-roadmap">
+                                <div class="roadmap-line"></div>
+                                
+                                <div class="roadmap-node">
+                                    <div class="roadmap-dot planned"></div>
+                                    <div class="roadmap-phase">
+                                        <div class="phase-quarter">Q1 2024</div>
+                                        <h3>Acceleration Phase</h3>
+                                        <ul>
+                                            <li><span class="status planned">Planned</span> Tier-1 Exchange Listings</li>
+                                            <li><span class="status planned">Planned</span> Cross-Chain Bridge Development</li>
+                                            <li><span class="status planned">Planned</span> Mobile App Full Release</li>
+                                            <li><span class="status planned">Planned</span> Enhanced Security Features</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="roadmap-node">
+                                    <div class="roadmap-dot planned"></div>
+                                    <div class="roadmap-phase">
+                                        <div class="phase-quarter">Q2 2024</div>
+                                        <h3>Expansion Phase</h3>
+                                        <ul>
+                                            <li><span class="status planned">Planned</span> Layer-2 Scaling Solution</li>
+                                            <li><span class="status planned">Planned</span> Financial Services Integration</li>
+                                            <li><span class="status planned">Planned</span> Advanced Analytics Dashboard</li>
+                                            <li><span class="status planned">Planned</span> Developer API Release</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="roadmap-node">
+                                    <div class="roadmap-dot planned"></div>
+                                    <div class="roadmap-phase">
+                                        <div class="phase-quarter">Q3-Q4 2024</div>
+                                        <h3>Revolution Phase</h3>
+                                        <ul>
+                                            <li><span class="status planned">Planned</span> Major Commercial Partnerships</li>
+                                            <li><span class="status planned">Planned</span> Global Payment Integration</li>
+                                            <li><span class="status planned">Planned</span> Ecosystem Expansion</li>
+                                            <li><span class="status planned">Planned</span> Institutional Investment Platform</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-pane" id="tab-2025">
+                            <div class="crypto-roadmap">
+                                <div class="roadmap-line"></div>
+                                
+                                <div class="roadmap-node">
+                                    <div class="roadmap-dot planned"></div>
+                                    <div class="roadmap-phase">
+                                        <div class="phase-quarter">2025 & Beyond</div>
+                                        <h3>Global Vision</h3>
+                                        <ul>
+                                            <li><span class="status planned">Planned</span> Own Blockchain Launch</li>
+                                            <li><span class="status planned">Planned</span> Decentralized Exchange Expansion</li>
+                                            <li><span class="status planned">Planned</span> Global Adoption Initiatives</li>
+                                            <li><span class="status planned">Planned</span> Metaverse Integration</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section id="team" class="team-crypto">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <div class="section-tag">EXPERTS</div>
+                    <h2>Our <span>Team</span></h2>
+                    <div class="crypto-divider"></div>
+                </div>
+                
+                <div class="team-grid">
+                    <div class="team-member" data-aos="fade-up" data-aos-delay="100">
+                        <div class="member-photo">
+                            <img src="/api/placeholder/400/400" alt="Michael Reynolds">
+                            <div class="member-socials">
+                                <a href="#" class="member-social-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                        <rect x="2" y="9" width="4" height="12"></rect>
+                                        <circle cx="4" cy="4" r="2"></circle>
+                                    </svg>
+                                </a>
+                                <a href="#" class="member-social-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h3>Michael Reynolds</h3>
+                            <div class="member-role">CEO & Founder</div>
+                            <p>Former VP at BlockTech with 8+ years experience in blockchain development and cryptocurrency markets.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="team-member" data-aos="fade-up" data-aos-delay="200">
+                        <div class="member-photo">
+                            <img src="/api/placeholder/400/400" alt="Sarah Chen">
+                            <div class="member-socials">
+                                <a href="#" class="member-social-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                        <rect x="2" y="9" width="4" height="12"></rect>
+                                        <circle cx="4" cy="4" r="2"></circle>
+                                    </svg>
+                                </a>
+                                <a href="#" class="member-social-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h3>Sarah Chen</h3>
+                            <div class="member-role">CTO</div>
+                            <p>Blockchain architect with experience at Ethereum Foundation and Solana Labs. MSc in Computer Science from Stanford.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="team-member" data-aos="fade-up" data-aos-delay="300">
+                        <div class="member-photo">
+                            <img src="/api/placeholder/400/400" alt="David Park">
+                            <div class="member-socials">
+                                <a href="#" class="member-social-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                        <rect x="2" y="9" width="4" height="12"></rect>
+                                        <circle cx="4" cy="4" r="2"></circle>
+                                    </svg>
+                                </a>
+                                <a href="#" class="member-social-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h3>David Park</h3>
+                            <div class="member-role">Head of Marketing</div>
+                            <p>Digital marketing expert with experience at major cryptocurrency exchanges. Specialist in growth and community building.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="team-member" data-aos="fade-up" data-aos-delay="400">
+                        <div class="member-photo">
+                            <img src="/api/placeholder/400/400" alt="Elena Martinez">
+                            <div class="member-socials">
+                                <a href="#" class="member-social-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                        <rect x="2" y="9" width="4" height="12"></rect>
+                                        <circle cx="4" cy="4" r="2"></circle>
+                                    </svg>
+                                </a>
+                                <a href="#" class="member-social-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h3>Elena Martinez</h3>
+                            <div class="member-role">Lead Developer</div>
+                            <p>Smart contract specialist with experience at leading DeFi protocols. Expert in security auditing and optimization.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="faq-crypto">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <div class="section-tag">QUESTIONS</div>
+                    <h2>Frequently <span>Asked</span></h2>
+                    <div class="crypto-divider"></div>
+                </div>
+                
+                <div class="faq-container" data-aos="fade-up" data-aos-delay="200">
+                    <div class="faq-item active">
+                        <div class="faq-question">
+                            <h3>What is The GOAT token?</h3>
+                            <div class="faq-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>The GOAT is a next-generation cryptocurrency built on the Solana blockchain, designed to provide unprecedented security, transaction speed, and community governance features. It features a deflationary tokenomics model and extensive utility within our developing ecosystem.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How can I buy GOAT tokens?</h3>
+                            <div class="faq-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>You can purchase GOAT tokens through several methods:</p>
+                            <ol>
+                                <li>Decentralized exchanges: Raydium, Jupiter, and other Solana DEXs</li>
+                                <li>Centralized exchanges: Check our website for the latest CEX listings</li>
+                                <li>Direct purchase: Follow our step-by-step guide in the "Buy" section of our website</li>
+                            </ol>
+                            <p>Always ensure you're using the correct contract address: SOL7bx5G3UqRgf81XJ4AcDDwHv7ZqC6e2AhJSP</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What makes GOAT different from other cryptocurrencies?</h3>
+                            <div class="faq-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>GOAT stands out with its combination of advanced security features, lightning-fast transaction speeds (65,000+ TPS), near-zero fees, and innovative tokenomics. Our token incorporates:</p>
+                            <ul>
+                                <li>Automatic liquidity generation</li>
+                                <li>Deflationary burn mechanism</li>
+                                <li>Community governance</li>
+                                <li>Advanced staking rewards</li>
+                                <li>Comprehensive ecosystem development roadmap</li>
+                            </ul>
+                            <p>Additionally, we prioritize transparency and community engagement at every step.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Is GOAT secure and audited?</h3>
+                            <div class="faq-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, GOAT's smart contracts have undergone rigorous security audits by Certik, one of the leading blockchain security firms. Our code is continuously monitored for vulnerabilities, and we maintain a bug bounty program to ensure the highest security standards. You can view our audit reports on our website's "Security" section.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How can I participate in governance?</h3>
+                            <div class="faq-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>GOAT token holders can participate in governance through our decentralized governance portal. Simply connect your wallet containing GOAT tokens to vote on proposals regarding protocol changes, treasury allocations, and future developments. Your voting power is proportional to your GOAT holdings.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Join Section -->
+        <section class="join-crypto">
+            <div class="container">
+                <div class="join-content" data-aos="fade-up">
+                    <h2>Join The <span>GOAT</span> Community</h2>
+                    <p>Don't miss out on the next big opportunity in crypto</p>
+                    <div class="join-buttons">
+                        <a href="https://x.com/TheVividGoat" target="_blank" class="social-btn twitter">
+                            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                            </svg> Twitter
+                        </a>
+                        <a href="https://t.me/thegoat" target="_blank" class="social-btn telegram">
+                            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21.198 2.433a2.242 2.242 0 0 0-1.022.215l-16.5 7.5a2.25 2.25 0 0 0 .126 4.073l3.9 1.205 2.306 6.033c.143.373.49.626.887.626q.118 0 .236-.03a1 1 0 0 0 .73-.767l1.225-4.714 4.586 3.42a2.17 2.17 0 0 0 1.297.435 2.246 2.246 0 0 0 2.235-1.932l2.348-14.092a2.242 2.242 0 0 0-1.354-2.422z"></path>
+                                <line x1="10" y1="14" x2="20" y2="4"></line>
+                            </svg> Telegram
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="crypto-footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <img src="logo.png" alt="The GOAT Logo">
+                        <h3>The GOAT</h3>
+                        <p>Redefining the future of cryptocurrency</p>
+                        <div class="footer-socials">
+                            <a href="https://x.com/TheVividGoat" target="_blank">
+                                <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                                </svg>
+                            </a>
+                            <a href="https://t.me/thegoat" target="_blank">
+                                <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21.198 2.433a2.242 2.242 0 0 0-1.022.215l-16.5 7.5a2.25 2.25 0 0 0 .126 4.073l3.9 1.205 2.306 6.033c.143.373.49.626.887.626q.118 0 .236-.03a1 1 0 0 0 .73-.767l1.225-4.714 4.586 3.42a2.17 2.17 0 0 0 1.297.435 2.246 2.246 0 0 0 2.235-1.932l2.348-14.092a2.242 2.242 0 0 0-1.354-2.422z"></path>
+                                    <line x1="10" y1="14" x2="20" y2="4"></line>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="footer-links">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#tokenomics">Tokenomics</a></li>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="#roadmap">Roadmap</a></li>
+                            <li><a href="#team">Team</a></li>
+                            <li><a href="#faq">FAQ</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#">Whitepaper</a></li>
+                            <li><a href="#">Documentation</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Press Kit</a></li>
+                            <li><a href="#">Security</a></li>
+                            <li><a href="#">Careers</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-contact">
+                        <h4>Contact Us</h4>
+                        <p>Have questions? Reach out to our team.</p>
+                        <a href="mailto:info@thegoat.io" class="footer-email">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                            info@thegoat.io
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2025 The GOAT. All rights reserved.</p>
+                    <div class="footer-legal">
+                        <a href="#">Terms & Conditions</a>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                </div>
+                <div class="disclaimer">
+                    <p>Cryptocurrency investments are subject to high market risk. The GOAT is not a registered investment, legal or tax advisor or a broker/dealer. Please conduct your own research before investing.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Consent -->
+    <div class="cookie-consent">
+        <div class="cookie-content">
+            <p>We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.</p>
+            <div class="cookie-buttons">
+                <button class="cookie-btn secondary">Cookie Settings</button>
+                <button class="cookie-btn primary">Accept All</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script>
+        // Preloader
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('preloader').classList.add('loaded');
+                setTimeout(function() {
+                    document.getElementById('preloader').style.display = 'none';
+                }, 1000);
+            }, 1500);
+        });
+
+        // Initialize AOS
+        AOS.init({
+            duration: 400,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Particles JS
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: '#7bff00'
+                },
+                shape: {
+                    type: 'circle',
+                    stroke: {
+                        width: 0,
+                        color: '#000000'
+                    }
+                },
+                opacity: {
+                    value: 0.5,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 2,
+                        size_min: 0.1,
+                        sync: false
+                    }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#7303c0',
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 1,
+                    direction: 'none',
+                    random: true,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false,
+                    attract: {
+                        enable: false,
+                        rotateX: 600,
+                        rotateY: 1200
+                    }
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: 'grab'
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: 'push'
+                    },
+                    resize: true
+                },
+                modes: {
+                    grab: {
+                        distance: 140,
+                        line_linked: {
+                            opacity: 1
+                        }
+                    },
+                    push: {
+                        particles_nb: 4
+                    }
+                }
+            },
+            retina_detect: true
+        });
+
+        // Custom cursor
+        const cursor = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-dot-outline');
+
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            cursorOutline.animate({
+                left: e.clientX + 'px',
+                top: e.clientY + 'px'
+            }, {duration: 500, fill: 'forwards'});
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navList = document.querySelector('.nav-list');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navList.classList.toggle('active');
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                menuToggle.classList.remove('active');
+                navList.classList.remove('active');
+                
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetSection.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Theme toggle
+        const themeToggle = document.querySelector('.theme-toggle');
+        
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-theme');
+            themeToggle.classList.toggle('active');
+        });
+
+        // Sticky header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.crypto-header');
+            header.classList.toggle('scrolled', window.scrollY > 50);
+            
+            // Back to top button
+            const backToTop = document.getElementById('back-to-top');
+            backToTop.classList.toggle('show', window.scrollY > 300);
+        });
+
+        // Back to top button
+        document.getElementById('back-to-top').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Roadmap tabs
+        document.querySelectorAll('.tab-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and content
+                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.tab-pane').forEach(tab => tab.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding content
+                button.classList.add('active');
+                document.getElementById(button.dataset.tab).classList.add('active');
+            });
+        });
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all items
+                document.querySelectorAll('.faq-item').forEach(faqItem => {
+                    faqItem.classList.remove('active');
+                });
+                
+                // Toggle current item
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Cookie consent
+        const cookieConsent = document.querySelector('.cookie-consent');
+        const acceptCookiesBtn = cookieConsent.querySelector('.cookie-btn.primary');
+        
+        // Check if user has already accepted cookies
+        if (!localStorage.getItem('cookiesAccepted')) {
+            setTimeout(() => {
+                cookieConsent.classList.add('show');
+            }, 2000);
+        }
+        
+        acceptCookiesBtn.addEventListener('click', () => {
+            localStorage.setItem('cookiesAccepted', 'true');
+            cookieConsent.classList.remove('show');
+        });
+
+        // Copy to clipboard functionality
+        document.querySelector('.copy-btn').addEventListener('click', function() {
+            const textToCopy = this.getAttribute('data-clipboard-text');
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                this.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
+                setTimeout(() => {
+                    this.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
+                }, 2000);
+            });
+        });
+
+        // Counter animation
+        function animateCounter(elementId, targetValue, prefix = '') {
+            const element = document.getElementById(elementId);
+            let currentValue = 0;
+            const increment = targetValue / 50;
+            const duration = 2000; // 2 seconds
+            const interval = duration / 50;
+            
+            const timer = setInterval(() => {
+                currentValue += increment;
+                if (currentValue >= targetValue) {
+                    clearInterval(timer);
+                    currentValue = targetValue;
+                }
+                
+                if (prefix === '$') {
+                    if (targetValue >= 1000000) {
+                        element.textContent = prefix + (currentValue / 1000000).toFixed(1) + 'M';
+                    } else {
+                        element.textContent = prefix + Math.floor(currentValue).toLocaleString();
+                    }
+                } else {
+                    if (targetValue >= 1000000) {
+                        element.textContent = Math.floor(currentValue / 1000000) + 'M+';
+                    } else if (targetValue >= 1000) {
+                        element.textContent = Math.floor(currentValue / 1000) + 'K+';
+                    } else {
+                        element.textContent = Math.floor(currentValue);
+                    }
+                }
+            }, interval);
+        }
+
+        // Price Chart initialization
+        function initPriceChart() {
+            const ctx = document.getElementById('price-chart').getContext('2d');
+            
+            const gradient = ctx.createLinearGradient(0, 0, 0, 200);
+            gradient.addColorStop(0, 'rgba(123, 255, 0, 0.5)');
+            gradient.addColorStop(1, 'rgba(123, 255, 0, 0.0)');
+            
+            // Sample data - in a real scenario, this would come from an API
+            const priceData = {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'GOAT Price',
+                    data: [0.0012, 0.0018, 0.0015, 0.0022, 0.0020, 0.0025, 0.0030, 0.0028, 0.0035, 0.0040, 0.0045, 0.0042],
+                    fill: true,
+                    backgroundColor: gradient,
+                    borderColor: '#7bff00',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#7303c0',
+                    pointBorderColor: '#fff',
+                    pointRadius: 4,
+                    tension: 0.4
+                }]
+            };
+            
+            const priceChart = new Chart(ctx, {
+                type: 'line',
+                data: priceData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: 'rgba(255, 255, 255, 0.7)'
+                            }
+                        },
+                        y: {
+                            beginAtZero: false,
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: 'rgba(255, 255, 255, 0.7)',
+                                callback: function(value) {
+                                    return '$' + value.toFixed(4);
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            backgroundColor: 'rgba(35, 0, 77, 0.9)',
+                            titleColor: '#fff',
+                            bodyColor: '#7bff00',
+                            borderColor: '#7303c0',
+                            borderWidth: 1,
+                            callbacks: {
+                                label: function(context) {
+                                    return 'Price: $' + context.raw.toFixed(4);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Distribution Chart initialization
+        function initDistributionChart() {
+            const ctx = document.getElementById('distribution-chart').getContext('2d');
+            
+            const distributionData = {
+                labels: ['Liquidity', 'Development', 'Marketing', 'Team', 'Community'],
+                datasets: [{
+                    data: [50, 20, 15, 10, 5],
+                    backgroundColor: ['#7bff00', '#00e5ff', '#a78bfa', '#f472b6', '#fcd34d'],
+                    borderWidth: 0,
+                    borderRadius: 5
+                }]
+            };
+            
+            const distributionChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: distributionData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(35, 0, 77, 0.9)',
+                            titleColor: '#fff',
+                            bodyColor: '#7bff00',
+                            borderColor: '#7303c0',
+                            borderWidth: 1,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.label + ': ' + context.raw + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Initialize elements when they come into view
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.id === 'counter-holders') {
+                        animateCounter('counter-holders', 18542);
+                        animateCounter('counter-mcap', 12700000, '$');
+                        animateCounter('counter-liquidity', 6500000, '$');
+                    }
+                    
+                    if (entry.target.className === 'pulse-graph') {
+                        initPriceChart();
+                    }
+                    
+                    if (entry.target.className === 'chart-container') {
+                        initDistributionChart();
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements
+        document.getElementById('counter-holders') && observer.observe(document.getElementById('counter-holders'));
+        document.querySelector('.pulse-graph') && observer.observe(document.querySelector('.pulse-graph'));
+        document.querySelector('.chart-container') && observer.observe(document.querySelector('.chart-container'));
+    </script>
+</body>
+</html>
