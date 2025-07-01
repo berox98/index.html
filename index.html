@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nude Coin</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #dc3545 0%, #6f42c1 100%);
+            padding: 15px 0;
+            position: relative;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .logo::before {
+            content: "🪙";
+            margin-right: 8px;
+            font-size: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #dc3545 0%, #6f42c1 50%, #20c997 100%);
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .floating-circles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+
+        .circle:nth-child(1) {
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.1);
+            top: 10%;
+            left: 5%;
+        }
+
+        .circle:nth-child(2) {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.1);
+            top: 15%;
+            right: 10%;
+        }
+
+        .circle:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            bottom: 40%;
+            left: 8%;
+        }
+
+        .circle:nth-child(4) {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 193, 7, 0.3);
+            bottom: 20%;
+            right: 8%;
+        }
+
+        .hero-logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin-bottom: 30px;
+            border: 3px solid white;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #dc3545 0%, #fd7e14 100%);
+            color: white;
+            border: 2px solid transparent;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #007bff 0%, #6f42c1 100%);
+            color: white;
+            border: 2px solid transparent;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .scroll-arrow {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 24px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* About Section */
+        .about {
+            background: linear-gradient(135deg, #20c997 0%, #007bff 100%);
+            padding: 100px 0;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 60px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card:nth-child(1) {
+            background: linear-gradient(135deg, #dc3545 0%, #fd7e14 100%);
+        }
+
+        .feature-card:nth-child(2) {
+            background: linear-gradient(135deg, #007bff 0%, #6f42c1 100%);
+        }
+
+        .feature-card:nth-child(3) {
+            background: linear-gradient(135deg, #20c997 0%, #28a745 100%);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .feature-card p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Vision Section */
+        .vision {
+            background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
+            padding: 80px 0;
+            color: #333;
+        }
+
+        .vision-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vision-logo {
+            position: absolute;
+            right: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #6f42c1 0%, #dc3545 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: white;
+        }
+
+        .vision h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .vision p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            max-width: 70%;
+        }
+
+        /* Roadmap Section */
+        .roadmap {
+            background: linear-gradient(135deg, #dc3545 0%, #ffc107 100%);
+            padding: 100px 0;
+            color: white;
+            text-align: center;
+        }
+
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .roadmap-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px 20px;
+            position: relative;
+        }
+
+        .phase-badge {
+            background: #dc3545;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .roadmap-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .roadmap-card ul {
+            list-style: none;
+            text-align: left;
+        }
+
+        .roadmap-card li {
+            padding: 5px 0;
+            font-size: 14px;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .roadmap-card li::before {
+            content: "•";
+            color: #ffc107;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Community Section */
+        .community {
+            background: linear-gradient(135deg, #007bff 0%, #20c997 100%);
+            padding: 100px 0;
+            color: white;
+            text-align: center;
+        }
+
+        .social-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .social-btn {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-decoration: none;
+            color: white;
+            transition: transform 0.3s;
+            display: block;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-5px);
+        }
+
+        .social-btn:nth-child(1) {
+            background: linear-gradient(135deg, #1da1f2 0%, #007bff 100%);
+        }
+
+        .social-btn:nth-child(2) {
+            background: linear-gradient(135deg, #dc3545 0%, #fd7e14 100%);
+        }
+
+        .social-icon {
+            font-size: 30px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .social-btn h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .social-btn p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
+            border-radius: 15px;
+            padding: 50px 30px;
+            color: #333;
+            margin-top: 40px;
+        }
+
+        .cta-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .cta-section p {
+            margin-bottom: 30px;
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #dc3545 0%, #6f42c1 100%);
+            padding: 40px 0;
+            color: white;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .footer-logo::before {
+            content: "🪙";
+            margin-right: 8px;
+            font-size: 18px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .footer-social a:hover {
+            opacity: 0.7;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 30px;
+            padding-top: 20px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .vision-content {
+                padding: 30px 20px;
+            }
+            
+            .vision-logo {
+                position: static;
+                transform: none;
+                margin: 20px auto;
+            }
+            
+            .vision p {
+                max-width: 100%;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">Nude Coin</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#roadmap">Roadmap</a></li>
+                    <li><a href="#community">Community</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="floating-circles">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+        
+        <div class="hero-logo">
+            <img src="nude.png" style="height: 150px; margin-bottom: 50px;" >
+        </div>
+        <h1>Nude Coin</h1>
+        <p>Nudes, because who doesn't like them?</p>
+        
+        <div class="hero-buttons">
+            <a href="#" class="btn btn-primary">🔄 Buy on Pump.fun</a>
+            <a href="#about" class="btn btn-secondary">Learn More →</a>
+        </div>
+        
+        <div class="scroll-arrow">↓</div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">About Nude Coin</h2>
+            <p class="section-subtitle">Nude Coin represents a new era of transparent, community-driven cryptocurrency designed for the future of decentralized finance.</p>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Security First</h3>
+                    <p>Built with industry-leading security protocols and audited smart contracts to ensure your investments are protected.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Community Driven</h3>
+                    <p>Our community is at the heart of everything we do. Join thousands of supporters building the future together.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Lightning Fast</h3>
+                    <p>Experience instant transactions with minimal fees, powered by cutting-edge blockchain technology.</p>
+                </div>
+            </div>
+            
+            <div class="vision">
+                <div class="container">
+                    <div class="vision-content">
+                        <h2>Our Vision</h2>
+                        <p>Nude Coin is more than just a cryptocurrency—it's a movement towards true financial freedom and transparency. We believe in creating a decentralized future where everyone has equal access to financial opportunities.</p>
+                        <p>Our mission is to build a sustainable, community-driven platform that empowers individuals to take control of their financial future while fostering innovation in the DeFi space.</p>
+                        <div class="vision-logo">🪙</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section class="roadmap" id="roadmap">
+        <div class="container">
+            <h2 class="section-title">Roadmap</h2>
+            <p class="section-subtitle">Our journey towards revolutionizing the cryptocurrency space, one milestone at a time.</p>
+            
+            <div class="roadmap-grid">
+                <div class="roadmap-card">
+                    <div class="phase-badge">Phase 1</div>
+                    <h3>Foundation</h3>
+                    <ul>
+                        <li>Token Contract Development</li>
+                        <li>Initial Liquidity Pool</li>
+                        <li>Community Building</li>
+                        <li>Website Launch</li>
+                    </ul>
+                </div>
+                
+                <div class="roadmap-card">
+                    <div class="phase-badge">Phase 2</div>
+                    <h3>Growth</h3>
+                    <ul>
+                        <li>Marketing Campaign Launch</li>
+                        <li>Partnership Development</li>
+                        <li>Exchange Listings</li>
+                        <li>Audit Completion</li>
+                    </ul>
+                </div>
+                
+                <div class="roadmap-card">
+                    <div class="phase-badge">Phase 3</div>
+                    <h3>Expansion</h3>
+                    <ul>
+                        <li>Mobile App Development</li>
+                        <li>NFT Marketplace Launch</li>
+                        <li>Staking Platform</li>
+                        <li>Governance Implementation</li>
+                    </ul>
+                </div>
+                
+                <div class="roadmap-card">
+                    <div class="phase-badge">Phase 4</div>
+                    <h3>Evolution</h3>
+                    <ul>
+                        <li>Cross-Chain Integration</li>
+                        <li>DeFi Ecosystem</li>
+                        <li>Enterprise Adoption</li>
+                        <li>Global Partnerships</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="community" id="community">
+        <div class="container">
+            <h2 class="section-title">Join Our Community</h2>
+            <p class="section-subtitle">Connect with thousands of Nude Coin supporters and stay updated on the latest developments.</p>
+            
+            <div class="social-buttons">
+                <a href="https://x.com/i/communities/1940145856230854942" class="social-btn">
+                    <div class="social-icon">🐦</div>
+                    <h3>Follow us on Twitter</h3>
+                    <p>Stay updated with the latest news and announcements.</p>
+                    <p><strong>Follow @NudeCoin</strong></p>
+                </a>
+                
+                <a href="#" class="social-btn">
+                    <div class="social-icon">📈</div>
+                    <h3>Trade on Pump.fun</h3>
+                    <p>Buy, sell, and trade Nude Coin on the leading platform.</p>
+                    <p><strong>Start Trading ↗</strong></p>
+                </a>
+            </div>
+            
+            <div class="cta-section">
+                <h3>Ready to Get Started?</h3>
+                <p>Join the Nude Coin revolution and be part of the future of decentralized finance.</p>
+                <a href="#" class="btn btn-primary">🛒 Buy Nude Coin Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">Nude Coin</div>
+            <div class="footer-social">
+                <a href="https://x.com/i/communities/1940145856230854942">🐦</a>
+                <a href="#">🔗</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Nude Coin. All rights reserved. Built for the future of decentralized finance.</p>
+        </div>
+    </footer>
+</body>
+</html>
