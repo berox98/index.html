@@ -1,0 +1,304 @@
+{
+  "animation_json": {
+    "files": [
+      {
+        "url": "assets/animations.json",
+        "type": "animation",
+        "key": "animations"
+      }
+    ]
+  },
+  "fonts": {
+    "files": [
+      {
+        "url": "assets/fronts/retro-pixel-arcade.otf.woff2",
+        "type": "font",
+        "key": "RetroPixel",
+        "fontType": "opentype"
+      },
+      {
+        "url": "assets/fronts/supercell-magic_0.ttf",
+        "type": "font",
+        "key": "SupercellMagic",
+        "fontType": "opentype"
+      }
+    ]
+  },
+  "player_animations": {
+    "files": [
+      {
+        "url": "https://cdn-game-mcp.gambo.ai/416b937b-019d-412c-bec0-ad7e3df6e1d2/animations/pumpkin_boy_idle_front/frame_1.png",
+        "type": "image",
+        "key": "pumpkin_boy_idle_front_frame1"
+      },
+      {
+        "url": "https://cdn-game-mcp.gambo.ai/2df5a69d-8339-42a4-ac72-aebf8075bac9/animations/pumpkin_boy_idle_front/frame_2.png",
+        "type": "image",
+        "key": "pumpkin_boy_idle_front_frame2"
+      },
+      {
+        "url": "https://cdn-game-mcp.gambo.ai/1f2141d3-6dab-4daa-97f7-2db53929946b/animations/pumpkin_boy_idle_side_R/frame_1.png",
+        "type": "image",
+        "key": "pumpkin_boy_idle_side_R_frame1"
+      },
+      {
+        "url": "https://cdn-game-mcp.gambo.ai/e6a4bd17-6df8-4ad7-a856-dbdca4340e75/animations/pumpkin_boy_idle_side_R/frame_2.png",
+        "type": "image",
+        "key": "pumpkin_boy_idle_side_R_frame2"
+      },
+      {
+        "url": "https://cdn-game-mcp.gambo.ai/700921be-d4ca-4465-83ab-12cc6870162f/animations/pumpkin_boy_idle_back/frame_1.png",
+        "type": "image",
+        "key": "pumpkin_boy_idle_back_frame1"
+      },
+      {
+        "url": "https://cdn-game-mcp.gambo.ai/3bc5555a-222c-42e5-ae4d-1346cc3d1a41/animations/pumpkin_boy_idle_back/frame_2.png",
+        "type": "image",
+        "key": "pumpkin_boy_idle_back_frame2"
+      },
+      {
+        "url": "https://cdn-game-mcp.gambo.ai/47d75f42-923b-4d71-97c1-c80065d34c6e/animations/pumpkin_boy_walk_front/frame_1.png",
+        "type": "image",
+        "key": "pumpkin_boy_walk_front_frame1"
+      },
+      {
+        "url": "https://cdn-game-mcp.gambo.ai/de44e122-6816-4e91-8cee-36c5e48309ed/animations/pumpkin_boy_walk_front/frame_2.png",
+        "type": "image",
+        "key": "pumpkin_boy_walk_front_frame2"
+      },
+      {
+        "url": "https://cdn-game-mcp.gambo.ai/68387cd9-ddb4-4839-ab6d-6c994aa7debd/animations/pumpkin_boy_walk_side_R/frame_1.png",
+        "type": "image",
+        "key": "pumpkin_boy_walk_side_R_frame1"
+      },
+      {
+        "url": "https://cdn-game-mcp.gambo.ai/c153bb92-14ff-4c0f-a23e-6e309ae0f643/animations/pumpkin_boy_walk_side_R/frame_2.png",
+        "type": "image",
+        "key": "pumpkin_boy_walk_side_R_frame2"
+      },
+      {
+        "url": "https://cdn-game-mcp.gambo.ai/c5421ae4-9f11-4583-80dd-77600e968e8f/animations/pumpkin_boy_walk_back/frame_1.png",
+        "type": "image",
+        "key": "pumpkin_boy_walk_back_frame1"
+      },
+      {
+        "url": "https://cdn-game-mcp.gambo.ai/bfed5084-49ce-4185-8324-cadd4d1756cb/animations/pumpkin_boy_walk_back/frame_2.png",
+        "type": "image",
+        "key": "pumpkin_boy_walk_back_frame2"
+      },
+      {
+        "url": "https://cdn-game-mcp.gambo.ai/8c4e0092-58ba-468e-8807-c47951c1b934/animations/pumpkin_boy_attack_front/frame_1.png",
+        "type": "image",
+        "key": "pumpkin_boy_attack_front_frame1"
+      },
+      {
+        "url": "https://cdn-game-mcp.gambo.ai/59dfdc64-bff4-4d7f-8847-2cf18213d362/animations/pumpkin_boy_attack_front/frame_2.png",
+        "type": "image",
+        "key": "pumpkin_boy_attack_front_frame2"
+      },
+      {
+        "url": "https://cdn-game-mcp.gambo.ai/9fb001b3-8750-42e2-93a3-87c3721acc74/animations/pumpkin_boy_attack_side_R/frame_1.png",
+        "type": "image",
+        "key": "pumpkin_boy_attack_side_R_frame1"
+      },
+      {
+        "url": "https://cdn-game-mcp.gambo.ai/dd7899f6-0667-4b59-adde-cea001fe71ac/animations/pumpkin_boy_attack_side_R/frame_2.png",
+        "type": "image",
+        "key": "pumpkin_boy_attack_side_R_frame2"
+      },
+      {
+        "url": "https://cdn-game-mcp.gambo.ai/75004e81-d470-45c5-a7b5-98a048e843fe/animations/pumpkin_boy_attack_back/frame_1.png",
+        "type": "image",
+        "key": "pumpkin_boy_attack_back_frame1"
+      },
+      {
+        "url": "https://cdn-game-mcp.gambo.ai/0e16c344-54e1-44c2-8e25-5edf38699c16/animations/pumpkin_boy_attack_back/frame_2.png",
+        "type": "image",
+        "key": "pumpkin_boy_attack_back_frame2"
+      }
+    ]
+  },
+  "monster_animations": {
+    "files": [
+      {
+        "url": "https://cdn-game-mcp.gambo.ai/510b6c49-6a6f-42f4-a55e-f74be432d5f1/animations/shadow_monster_idle_front/frame_1.png",
+        "type": "image",
+        "key": "shadow_monster_idle_front_frame1"
+      },
+      {
+        "url": "https://cdn-game-mcp.gambo.ai/2347c422-ce0b-461b-8e9c-c824dfd43eb4/animations/shadow_monster_idle_front/frame_2.png",
+        "type": "image",
+        "key": "shadow_monster_idle_front_frame2"
+      },
+      {
+        "url": "https://cdn-game-mcp.gambo.ai/84655b58-86d0-4254-8c1e-706ce36811b3/animations/shadow_monster_idle_side_R/frame_1.png",
+        "type": "image",
+        "key": "shadow_monster_idle_side_R_frame1"
+      },
+      {
+        "url": "https://cdn-game-mcp.gambo.ai/af05432c-6bfc-4daf-a533-e2ea9f82aeb1/animations/shadow_monster_idle_side_R/frame_2.png",
+        "type": "image",
+        "key": "shadow_monster_idle_side_R_frame2"
+      },
+      {
+        "url": "https://cdn-game-mcp.gambo.ai/bf63efb1-7e6f-444c-ae93-90b1a9736667/animations/shadow_monster_idle_back/frame_1.png",
+        "type": "image",
+        "key": "shadow_monster_idle_back_frame1"
+      },
+      {
+        "url": "https://cdn-game-mcp.gambo.ai/cb32eb82-84da-443a-b33c-53b8013d0a46/animations/shadow_monster_idle_back/frame_2.png",
+        "type": "image",
+        "key": "shadow_monster_idle_back_frame2"
+      },
+      {
+        "url": "https://cdn-game-mcp.gambo.ai/e0832d7e-8a80-4e59-8ac4-b7f2af50a4a7/animations/shadow_monster_move_front/frame_1.png",
+        "type": "image",
+        "key": "shadow_monster_move_front_frame1"
+      },
+      {
+        "url": "https://cdn-game-mcp.gambo.ai/8589587a-04c6-4b44-b53a-1260f26e9b00/animations/shadow_monster_move_front/frame_2.png",
+        "type": "image",
+        "key": "shadow_monster_move_front_frame2"
+      },
+      {
+        "url": "https://cdn-game-mcp.gambo.ai/ab8c93af-c3c4-40c2-b0ae-22ca38fbf6f9/animations/shadow_monster_move_side_R/frame_1.png",
+        "type": "image",
+        "key": "shadow_monster_move_side_R_frame1"
+      },
+      {
+        "url": "https://cdn-game-mcp.gambo.ai/9e4ff14f-bcbc-4c6d-a858-667f0026b730/animations/shadow_monster_move_side_R/frame_2.png",
+        "type": "image",
+        "key": "shadow_monster_move_side_R_frame2"
+      },
+      {
+        "url": "https://cdn-game-mcp.gambo.ai/a0ef60e7-1665-4dd3-98e7-90ee87203b21/animations/shadow_monster_move_back/frame_1.png",
+        "type": "image",
+        "key": "shadow_monster_move_back_frame1"
+      },
+      {
+        "url": "https://cdn-game-mcp.gambo.ai/a0a811d5-b6aa-4d86-a61a-55f628515926/animations/shadow_monster_move_back/frame_2.png",
+        "type": "image",
+        "key": "shadow_monster_move_back_frame2"
+      },
+      {
+        "url": "https://cdn-game-mcp.gambo.ai/462a4f61-7ac6-4edf-a1b0-379ac409b7d7/animations/shadow_monster_die_side_R/frame_1.png",
+        "type": "image",
+        "key": "shadow_monster_die_side_R_frame1"
+      },
+      {
+        "url": "https://cdn-game-mcp.gambo.ai/bc34cb32-b5b3-4259-b1c7-29219e1f3fc9/animations/shadow_monster_die_side_R/frame_2.png",
+        "type": "image",
+        "key": "shadow_monster_die_side_R_frame2"
+      }
+    ]
+  },
+  "tilemaps": {
+    "files": [
+      {
+        "type": "tilemapTiledJSON",
+        "key": "halloween_labyrinth",
+        "url": "https://cdn-game-mcp.gambo.ai/162f925b-f34f-4069-9552-7d50176b5b2a/tile_maps/halloween_labyrinth.json"
+      },
+      {
+        "type": "tilemapTiledJSON",
+        "key": "halloween_labyrinth_level2",
+        "url": "https://cdn-game-mcp.gambo.ai/6471c853-75cf-4922-a181-f394ef319a59/tile_maps/halloween_labyrinth_level2.json"
+      },
+      {
+        "type": "tilemapTiledJSON",
+        "key": "halloween_labyrinth_level3",
+        "url": "https://cdn-game-mcp.gambo.ai/8c1df357-020f-4b93-8054-cb596548851c/tile_maps/halloween_labyrinth_level3.json"
+      }
+    ]
+  },
+  "tilesets": {
+    "files": [
+      {
+        "type": "image",
+        "key": "halloween_ground_floor",
+        "url": "https://cdn-game-mcp.gambo.ai/459cb035-0482-4f06-863a-2be5dc9c3704/tilesets/halloween_ground_floor.png"
+      },
+      {
+        "type": "image",
+        "key": "halloween_stone_walls",
+        "url": "https://cdn-game-mcp.gambo.ai/bb155254-2ef0-4c5b-aae3-b86709eed831/tilesets/halloween_stone_walls.png"
+      }
+    ]
+  },
+  "backgrounds": {
+    "files": [
+      {
+        "type": "image",
+        "key": "halloween_labyrinth_background",
+        "url": "https://cdn-game-mcp.gambo.ai/7b6a4c8a-7770-4727-876c-335b12437334/images/halloween_labyrinth_background.png"
+      }
+    ]
+  },
+  "ui_images": {
+    "files": [
+      {
+        "type": "image",
+        "key": "halloween_game_title",
+        "url": "https://cdn-game-mcp.gambo.ai/21bfd90c-dccb-48c2-b483-f364b20ab368/images/halloween_game_title.png"
+      },
+      {
+        "type": "image",
+        "key": "pumpkin_maze_game_title",
+        "url": "https://cdn-game-mcp.gambo.ai/c369ab4c-b44f-48aa-b712-a266807d6438/images/pumpkin_maze_game_title.png"
+      },
+      {
+        "type": "image",
+        "key": "pump_fun_token",
+        "url": "https://cdn-game-mcp.gambo.ai/94f0ef01-ea66-4e2b-ac3a-dadb42f399cc/images/pump_fun_token.png"
+      },
+      {
+        "type": "image",
+        "key": "candy_stick_weapon",
+        "url": "https://cdn-game-mcp.gambo.ai/6a712de7-b251-4afb-8371-4250c1afc689/images/candy_stick_weapon.png"
+      }
+    ]
+  },
+  "sound_effects": {
+    "files": [
+      {
+        "type": "audio",
+        "key": "token_collect",
+        "url": "https://cdn-game-mcp.gambo.ai/d7c90c69-637c-4c1c-aec6-f6b87fe20213/sound_effects/token_collect.mp3"
+      },
+      {
+        "type": "audio",
+        "key": "candy_stick_attack",
+        "url": "https://cdn-game-mcp.gambo.ai/72b4710b-1cda-4a3f-a0b1-270e5014873f/sound_effects/candy_stick_attack.mp3"
+      },
+      {
+        "type": "audio",
+        "key": "monster_hurt",
+        "url": "https://cdn-game-mcp.gambo.ai/d9bb889e-7d15-4931-88c1-3836b01b6c06/sound_effects/monster_hurt.mp3"
+      },
+      {
+        "type": "audio",
+        "key": "player_hurt",
+        "url": "https://cdn-game-mcp.gambo.ai/d9ae33ac-c9aa-4077-bcf7-3ca201f4ef79/sound_effects/player_hurt.mp3"
+      },
+      {
+        "type": "audio",
+        "key": "ui_select",
+        "url": "https://cdn-game-mcp.gambo.ai/0b9b05dd-6274-478c-9b5a-fac24dec09f3/sound_effects/ui_select.mp3"
+      }
+    ]
+  },
+  "background_musics": {
+    "files": [
+      {
+        "type": "audio",
+        "key": "spooky_halloween_theme",
+        "url": "https://cdn-game-mcp.gambo.ai/7a60868b-9be6-437b-8a27-28c90bd510ca/music/spooky_halloween_theme.wav"
+      }
+    ]
+  },
+  "meta": {
+    "app": "Gambo AI",
+    "version": 1,
+    "showAllFilesInBlocks": false
+  }
+}
